@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Heer Shah | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- GSAP -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js" defer></script>
+</head>
+
+<body>
+
+  <!-- MAIN SLIDER -->
+  <div class="slider" id="slider">
+<!-- INTRO -->
+<section class="slide intro">
+
+  <!-- LEFT CONTENT -->
+  <div class="slide-content">
+
+    <h1>Heer Shah</h1>
+    <h3>IT Undergraduate | Full-Stack Web Developer</h3>
+    <p>NMIMS • Mumbai, India</p>
+
+    <div class="intro-meta">
+      <span>Dashboards</span>
+      <span>Web Systems</span>
+      <span>Automation</span>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-actions slide1-only">
+      <button class="qa-btn" data-go="projects" aria-label="Go to Projects">
+        📁 <span>Projects</span>
+      </button>
+      <button class="qa-btn" data-go="skills" aria-label="Go to Skills">
+        🧠 <span>Skills</span>
+      </button>
+      <button class="qa-btn" data-go="contact" aria-label="Go to Contact">
+        📄 <span>Contact</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- 🔒 LOCK TO UNLOCK (RIGHT SIDE) -->
+  <div class="unlock-area slide1-only" id="unlockArea">
+    <div class="lock" id="lockIcon">🔒</div>
+    <div class="key" id="keyIcon">🗝️</div>
+    <p class="unlock-text">Unlock to continue</p>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="slide about">
+
+  <!-- LEFT CONTENT -->
+  <div class="slide-content">
+    <h2>About Me</h2>
+
+    <p class="about-highlight">
+      I build interactive web systems, dashboards, and automation tools
+      that solve real-world problems.
+    </p>
+
+    <ul>
+      <li>🎓 B.Tech IT (Integrated)</li>
+      <li>💻 Full-stack web development</li>
+      <li>📊 Data-driven dashboards</li>
+      <li>⚙️ Automation & system design</li>
+    </ul>
+  </div>
+
+  <!-- SNAKE ROADMAP (RIGHT) -->
+  <div class="snake-roadmap">
+    <div class="snake-connector c1"></div>
+    <div class="snake-connector c2"></div>
+    <div class="snake-connector c3"></div>
+    <div class="snake-connector c4"></div>
+
+    <div class="snake-node n1">
+      <span class="dot"></span>
+      <div class="label">Foundations</div>
+      <div class="tooltip">Programming basics, CS fundamentals</div>
+    </div>
+
+    <div class="snake-node n2">
+      <span class="dot"></span>
+      <div class="label">Web Development</div>
+      <div class="tooltip">HTML, CSS, JS, PHP</div>
+    </div>
+
+    <div class="snake-node n3 current">
+      <span class="dot"></span>
+      <div class="label">You are here</div>
+      <div class="current-tag">IT Undergraduate — NMIMS</div>
+      <div class="tooltip">Building real systems & projects</div>
+    </div>
+
+    <div class="snake-node n4">
+      <span class="dot"></span>
+      <div class="label">Internships</div>
+      <div class="tooltip">Industry exposure & teamwork</div>
+    </div>
+
+    <div class="snake-node n5">
+      <span class="dot"></span>
+      <div class="label">Advanced Systems</div>
+      <div class="tooltip">Scalable full-stack architecture</div>
+    </div>
+  </div>
+
+</section>
+
+    <!-- TOOLS -->
+    <section class="slide tools">
+      <div class="slide-content">
+        <h2>Tools & Technologies</h2>
+        <div class="tools-grid">
+          <span>GitHub</span><span>Linux</span><span>Bash</span>
+          <span>Figma</span><span>Canva</span><span>Prezi</span>
+          <span>XAMPP</span><span>Cisco Packet Tracer</span>
+          <span>AutoCAD</span><span>Adobe XD</span><span>Postman</span>
+          <span>AI Systems</span>
+        </div>
+      </div>
+
+     <div class="orbital-stack">
+
+  <div class="core">
+    <span>SYSTEM<br>CORE</span>
+  </div>
+
+  <!-- Ambient inner orbit -->
+  <div class="orbit orbit-ambient"></div>
+
+  <div class="orbit orbit-ui">
+    <div class="layer">
+      UI / Design
+      <small>Figma · Canva · Adobe XD</small>
+    </div>
+  </div>
+
+  <div class="orbit orbit-backend">
+    <div class="layer">
+      Backend & APIs
+      <small>PHP · Node.js · XAMPP · Postman</small>
+    </div>
+  </div>
+
+  <div class="orbit orbit-infra">
+    <div class="layer">
+      Infra & Tools
+      <small>Linux · Bash · Git · MySQL</small>
+    </div>
+  </div>
+
+</div>
+
+    </section>
+
+
+<!-- SKILLS -->
+<section class="slide skills">
+  <div class="slide-content">
+    <h2>Skills</h2>
+
+    <div class="skills-jar-layout">
+
+      <!-- Main content: jar + skills -->
+      <div class="skills-main">
+
+        <!-- LEFT: Glass Jar -->
+        <div class="jar-container" id="jarTrigger">
+          <div class="jar-lid" id="jarLid">Open Skills Jar</div>
+          <div class="jar-glass">
+            <span class="jar-text">Click to open</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Skills (hidden initially) -->
+        <div class="skills-groups" id="skillsGroups">
+
+          <div class="skill-group">
+            <h4>Web Development</h4>
+            <div class="skill-row">
+              <span class="skill">HTML</span>
+              <span class="skill">Tailwind CSS</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">AngularJS</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Backend & Data</h4>
+            <div class="skill-row">
+              <span class="skill">PHP</span>
+              <span class="skill">Node JS</span>
+              <span class="skill">MySQL</span>
+              <span class="skill">Python</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Systems & Low-level</h4>
+            <div class="skill-row">
+              <span class="skill">Bash Scripting</span>
+              <span class="skill">C</span>
+              <span class="skill">C++</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="slide projects">
+  <div class="slide-content projects-layout">
+
+    <!-- LEFT: Project List -->
+    <div class="projects-menu">
+      <h2>Projects</h2>
+
+      <button class="project-item active" data-project="portal">
+        🗂 Portal
+        <span>Role-based system</span>
+      </button>
+
+      <button class="project-item" data-project="budget">
+        💰 Budget Manager
+        <span>Python finance engine</span>
+      </button>
+
+      <button class="project-item" data-project="ngo">
+        🌱 NGO & Biodiversity
+        <span>Dashboard + CMS</span>
+      </button>
+
+      <button class="project-item" data-project="event">
+        🎟 Event Website
+        <span>Automated ticketing</span>
+      </button>
+
+      <button class="project-item" data-project="hotel">
+        🏨 Hotel Network
+        <span>Cisco simulation</span>
+      </button>
+
+      <button class="project-item" data-project="school">
+        🏫 School Network
+        <span>Campus routing</span>
+      </button>
+    </div>
+
+    <!-- RIGHT: Project Details -->
+    <div class="project-details" id="projectDetails">
+      <!-- Content injected by JS -->
+    </div>
+
+  </div>
+</section>
+
+<section class="slide experience">
+  <div class="slide-content experience-layout">
+
+    <h2>Experience</h2>
+
+    <div class="experience-card">
+      <div class="experience-header">
+        <h3>Technical Intern – Web Designing</h3>
+        <span class="duration">June 2025 – July 2025</span>
+      </div>
+
+      <div class="company">
+        United Way Mumbai
+        <span>unitedwaymumbai.org · Mumbai</span>
+      </div>
+
+      <ul class="experience-points">
+        <li>Developed and deployed a lightweight, responsive NGO website to improve accessibility.</li>
+        <li>Integrated Google Sheets as a backend CMS for real-time content updates.</li>
+        <li>Built internal tools to streamline data entry and reduce manual effort.</li>
+        <li>Collaborated with cross-functional teams and led technical decisions under tight deadlines.</li>
+      </ul>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="slide contact">
+  <div class="slide-content contact-stage">
+
+    <div class="contact-row">
+
+      <!-- LEFT: FLASHCARDS -->
+      <div class="flashcard-panel">
+
+        <div class="flashcard-container">
+          <div class="flashcard active">
+            <h3>📧 Email</h3>
+            <p>heersha10@gmail.com</p>
+          </div>
+
+          <div class="flashcard">
+            <h3>🔗 LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/heer-shah123/" target="_blank">
+              View Profile
+            </a>
+          </div>
+
+          <div class="flashcard">
+            <h3>📄 Resume</h3>
+            <a href="resume.pdf" target="_blank">
+              Download Resume
+            </a>
+          </div>
+        </div>
+
+  <div class="bye-card hidden">
+  <h2 class="bye-title">
+    Bye <span class="wave">👋</span>
+  </h2>
+
+  <p class="bye-sub">Thanks for stopping by!</p>
+
+  <!-- SMALL BACK BUTTON -->
+  <button id="backBtn" class="back-btn">← Back to details</button>
+</div>
+
+
+  <!-- ✅ NEXT BUTTON MOVED HERE -->
+  <div class="flashcard-controls">
+    <button id="nextCard">Next →</button>
+  </div>
+</div>
+
+    <!-- RIGHT: GAME COLUMN -->
+<div class="game-column">
+
+  <!-- GAME CARD -->
+  <div class="game-panel">
+
+    <div class="game-header">
+      <span>Score: <span id="score">0</span></span>
+      <button id="pauseBtn">⏸</button>
+    </div>
+
+    <div class="bird-game">
+      <div class="bird">🐦</div>
+      <div class="ground"></div>
+      <div class="pipe"></div>
+    </div>
+
+    <p class="game-hint">Space / Click to Jump</p>
+
+    <div class="game-over hidden">
+      <h2>Game Over 💥</h2>
+      <button id="restartGame">Restart</button>
+    </div>
+
+  </div>
+
+  <!-- GAME BUTTONS -->
+  <div class="game-controls">
+    <button class="game-btn">Play</button>
+    <button class="game-btn ghost">Restart</button>
+  </div>
+
+</div>
+  </div>
+</section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
