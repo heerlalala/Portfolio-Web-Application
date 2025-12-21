@@ -2261,14 +2261,19 @@ body:not(.light) .snake-node .label {
 .game-over {
   position: absolute;
   inset: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(15, 15, 35, 0.9);
+  background: rgba(15, 15, 35, 0.95);
   backdrop-filter: blur(8px);
   z-index: 10;
   border-radius: 12px;
+}
+
+/* Show game-over only when visible (hidden class removed by JS) */
+.game-over:not(.hidden) {
+  display: flex;
 }
 
 .game-over h2 {
