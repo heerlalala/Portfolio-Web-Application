@@ -401,6 +401,8 @@ document.addEventListener("DOMContentLoaded", () => {
       paused = false;
       if (pauseBtn) pauseBtn.textContent = "⏸";
       gameOverBox.classList.add("hidden");
+      bird.style.top = birdY + "px";
+      pipe.style.left = pipeX + "px";
     }
 
     function jump() {
@@ -409,11 +411,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.addEventListener("keydown", e => {
-      if (e.code === "Space") jump();
+      if (e.code === "Space") {
+        e.preventDefault();
+        if (!gameRunning) {
+          resetGame();
+        }
+        jump();
+      }
     });
 
     if (birdGame) {
-      birdGame.addEventListener("click", jump);
+      birdGame.addEventListener("click", () => {
+        if (!gameRunning) {
+          resetGame();
+        }
+        jump();
+      });
     }
 
     function endGame() {
@@ -454,11 +467,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, 20);
 
+    // Bottom play/restart buttons
     if (playBtn) playBtn.addEventListener("click", resetGame);
     if (restartBtn) restartBtn.addEventListener("click", resetGame);
 
+    // Game-over restart button
+    const gameOverRestartBtn = document.getElementById("restartGame");
+    if (gameOverRestartBtn) {
+      gameOverRestartBtn.addEventListener("click", resetGame);
+    }
+
     if (pauseBtn) {
       pauseBtn.addEventListener("click", () => {
+        if (!gameRunning) return;
         paused = !paused;
         pauseBtn.textContent = paused ? "▶" : "⏸";
       });
