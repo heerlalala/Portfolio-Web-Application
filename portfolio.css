@@ -2051,7 +2051,9 @@ body:not(.light) .snake-node .label {
 ========================= */
 
 .hidden {
-  display: none;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 /* =========================
