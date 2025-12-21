@@ -411,12 +411,13 @@ body.light {
 
 /* Quick Actions (Home Screen Shortcuts) */
 .quick-actions {
-  position: absolute;
-  right: 40px;
-  bottom: 40px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  z-index: 100;
 }
 
 .qa-btn {
@@ -1768,7 +1769,7 @@ body:not(.light) .snake-node .label {
 ========================= */
 
 .slide.experience {
-  background: linear-gradient(160deg, #597768);
+  background: transparent;
 }
 
 .experience-layout {
@@ -1779,21 +1780,28 @@ body:not(.light) .snake-node .label {
 /* Section title */
 .experience h2 {
   font-size: 3rem;
+  font-weight: 700;
   margin-bottom: 40px;
-  color: #e5f6ff;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Card */
 .experience-card {
-  background: linear-gradient(145deg,
-      rgba(15, 23, 42, 0.85),
-      rgba(2, 6, 23, 0.85));
+  background: var(--card);
+  backdrop-filter: blur(12px);
   border-radius: 24px;
   padding: 36px 40px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
 
-  box-shadow:
-    0 30px 70px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+.experience-card:hover {
+  border-color: var(--border-glow);
+  box-shadow: var(--glow), var(--shadow);
 }
 
 /* Header */
