@@ -198,43 +198,40 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     SLIDE 3 – ORBITAL ANIMATIONS
+     SLIDE 3 – TECH STACK CARD ANIMATIONS
   ========================== */
 
-  gsap.from(".layer", {
-    y: 40,
+  // Elegant staggered reveal for floating tech cards
+  gsap.from(".orbit-ui .layer", {
+    y: 60,
     opacity: 0,
-    stagger: 0.25,
-    duration: 0.8,
+    duration: 1,
+    delay: 0.2,
     ease: "power3.out"
   });
 
-  gsap.to(".orbit-ui", {
-    rotation: 360,
-    duration: 42,
-    repeat: -1,
-    ease: "none"
+  gsap.from(".orbit-backend .layer", {
+    y: 60,
+    opacity: 0,
+    duration: 1,
+    delay: 0.4,
+    ease: "power3.out"
   });
 
-  gsap.to(".orbit-backend", {
-    rotation: -360,
-    duration: 58,
-    repeat: -1,
-    ease: "none"
+  gsap.from(".orbit-infra .layer", {
+    y: 60,
+    opacity: 0,
+    duration: 1,
+    delay: 0.6,
+    ease: "power3.out"
   });
 
-  gsap.to(".orbit-infra", {
-    rotation: 360,
-    duration: 75,
-    repeat: -1,
-    ease: "none"
-  });
-
-  gsap.to(".orbit-ambient", {
-    rotation: -360,
-    duration: 90,
-    repeat: -1,
-    ease: "none"
+  // Core badge animation
+  gsap.from(".core", {
+    scale: 0,
+    opacity: 0,
+    duration: 0.8,
+    ease: "back.out(1.7)"
   });
 
   /* =========================
