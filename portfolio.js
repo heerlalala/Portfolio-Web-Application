@@ -370,12 +370,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const birdGame = document.querySelector(".bird-game");
 
   if (bird && pipe && scoreEl && gameOverBox && birdGame) {
-    let birdY = 130;
+    let birdY = 150;
     let velocity = 0;
     const gravity = 0.5;
     const jumpForce = -7.5;
 
-    let pipeX = 580;
+    let pipeX = 640;
     const speed = 3.5;
 
     let score = 0;
@@ -384,18 +384,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Helper to get game bounds dynamically
     function getGameHeight() {
-      return birdGame.clientHeight || 240;
+      return birdGame.clientHeight || 320;
     }
 
     function getGameWidth() {
-      return birdGame.clientWidth || 440;
+      return birdGame.clientWidth || 580;
     }
 
     function randomizePipeHeight() {
       const gameH = getGameHeight();
-      // Leave at least 90px gap for the bird to fly through (bird is ~28px)
-      const minHeight = 40;
-      const maxHeight = gameH - 100;
+      // Leave at least 115px gap for the bird to fly through (bird is ~36px)
+      const minHeight = 50;
+      const maxHeight = gameH - 115;
       const randomH = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
       pipe.style.height = randomH + "px";
     }
@@ -505,8 +505,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Check boundary collision: floor or ceiling
-      // Bird size is roughly 30px. Ground height is 6px.
-      if (birdY > (gameH - 36) || birdY < 0) {
+      // Bird size is roughly 36px. Ground height is 6px.
+      if (birdY > (gameH - 42) || birdY < 0) {
         endGame();
       }
     }, 20);
