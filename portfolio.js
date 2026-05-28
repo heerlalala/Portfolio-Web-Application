@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const birdGame = document.querySelector(".bird-game");
 
   if (bird && pipe && scoreEl && gameOverBox && birdGame) {
-    let birdY = 150;
+    let birdY = 200;
     let velocity = 0;
     const gravity = 0.5;
     const jumpForce = -7.5;
@@ -384,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Helper to get game bounds dynamically
     function getGameHeight() {
-      return birdGame.clientHeight || 320;
+      return birdGame.clientHeight || 460;
     }
 
     function getGameWidth() {
