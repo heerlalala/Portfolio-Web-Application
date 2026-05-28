@@ -84,44 +84,74 @@
         </ul>
       </div>
 
-      <!-- SNAKE ROADMAP (RIGHT) -->
-      <div class="snake-roadmap">
-        <div class="snake-connector c1"></div>
-        <div class="snake-connector c2"></div>
-        <div class="snake-connector c3"></div>
-        <div class="snake-connector c4"></div>
-
-        <div class="snake-node n1">
-          <span class="dot"></span>
-          <div class="label">Foundations</div>
-          <div class="tooltip">Programming basics, CS fundamentals</div>
+      <!-- CYBERPUNK INTERACTIVE DASHBOARD (RIGHT) -->
+      <div class="tech-dashboard">
+        <!-- Dashboard Header -->
+        <div class="dash-header">
+          <div class="dash-status">
+            <span class="pulse-dot"></span> SYSTEM_ACTIVE
+          </div>
+          <div class="dash-tabs">
+            <button class="dash-tab active" data-tab="timeline">Timeline</button>
+            <button class="dash-tab" data-tab="stats">Stats</button>
+            <button class="dash-tab" data-tab="logs">Console</button>
+          </div>
         </div>
 
-        <div class="snake-node n2">
-          <span class="dot"></span>
-          <div class="label">Web Development</div>
-          <div class="tooltip">HTML, CSS, JS, PHP</div>
+        <!-- Timeline Panel -->
+        <div class="dash-panel active" id="panel-timeline">
+          <div class="timeline-flow">
+            <div class="timeline-node active" data-desc="Programming foundations: Learnt C, C++, Python, algorithms, data structures, and computer science basics.">
+              <span class="node-badge">01</span> Foundations
+            </div>
+            <div class="timeline-node active" data-desc="Web Development focus: Mastered HTML, CSS, JavaScript, PHP, MySQL database design, and responsive design.">
+              <span class="node-badge">02</span> Web Dev
+            </div>
+            <div class="timeline-node current" data-desc="IT Undergraduate student at NMIMS University (Mumbai, India). Building dynamic dashboards, web apps, and scripts.">
+              <span class="node-badge">03</span> NMIMS (Present)
+            </div>
+            <div class="timeline-node" data-desc="United Way Mumbai: Created responsive NGO site, integrated Google Sheets CMS backend, leading tech workflows.">
+              <span class="node-badge">04</span> Internships
+            </div>
+            <div class="timeline-node" data-desc="Advanced system architecture: Designing scalable, fast, secure full-stack software and network structures.">
+              <span class="node-badge">05</span> Systems
+            </div>
+          </div>
+          <div class="timeline-detail-box" id="timeline-detail">
+            Select a timeline node to inspect system records.
+          </div>
         </div>
 
-        <div class="snake-node n3 current">
-          <span class="dot"></span>
-          <div class="label">You are here</div>
-          <div class="current-tag">IT Undergraduate — NMIMS</div>
-          <div class="tooltip">Building real systems & projects</div>
+        <!-- Stats Panel -->
+        <div class="dash-panel" id="panel-stats">
+          <div class="stats-bars">
+            <div class="stat-item">
+              <div class="stat-info"><span>Frontend Web (HTML/Tailwind/JS)</span><span>90%</span></div>
+              <div class="stat-progress"><div class="stat-progress-bar" style="width: 90%"></div></div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-info"><span>Backend & APIs (PHP/NodeJS)</span><span>85%</span></div>
+              <div class="stat-progress"><div class="stat-progress-bar" style="width: 85%"></div></div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-info"><span>Data & SQL (MySQL/MongoDB)</span><span>82%</span></div>
+              <div class="stat-progress"><div class="stat-progress-bar" style="width: 82%"></div></div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-info"><span>Systems & Tools (Bash/Git/Linux)</span><span>80%</span></div>
+              <div class="stat-progress"><div class="stat-progress-bar" style="width: 80%"></div></div>
+            </div>
+          </div>
         </div>
 
-        <div class="snake-node n4">
-          <span class="dot"></span>
-          <div class="label">Internships</div>
-          <div class="tooltip">Industry exposure & teamwork</div>
-        </div>
-
-        <div class="snake-node n5">
-          <span class="dot"></span>
-          <div class="label">Advanced Systems</div>
-          <div class="tooltip">Scalable full-stack architecture</div>
+        <!-- Logs Panel -->
+        <div class="dash-panel" id="panel-logs">
+          <div class="logs-console" id="consoleLogs">
+            <!-- Dynamically populated via JS -->
+          </div>
         </div>
       </div>
+
 
     </section>
 

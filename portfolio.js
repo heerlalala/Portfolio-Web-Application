@@ -568,4 +568,115 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /* ==========================================
+     INTERACTIVE CYBERPUNK DASHBOARD (SLIDE 2)
+     ========================================== */
+
+  const dashTabs = document.querySelectorAll(".dash-tab");
+  const dashPanels = document.querySelectorAll(".dash-panel");
+  const timelineNodes = document.querySelectorAll(".timeline-node");
+  const timelineDetail = document.getElementById("timeline-detail");
+  const consoleLogs = document.getElementById("consoleLogs");
+
+  // Tab switching
+  dashTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      dashTabs.forEach(t => t.classList.remove("active"));
+      dashPanels.forEach(p => p.classList.remove("active"));
+
+      tab.classList.add("active");
+      const targetPanel = document.getElementById(`panel-${tab.dataset.tab}`);
+      if (targetPanel) {
+        targetPanel.classList.add("active");
+      }
+
+      // Initialize logs stream if log tab activated
+      if (tab.dataset.tab === "logs") {
+        startConsoleLogs();
+      } else {
+        stopConsoleLogs();
+      }
+    });
+  });
+
+  // Timeline node clicking
+  timelineNodes.forEach(node => {
+    node.addEventListener("click", () => {
+      timelineNodes.forEach(n => n.classList.remove("active"));
+      node.classList.add("active");
+
+      // Typewriter/Terminal description effect
+      const descText = node.dataset.desc;
+      if (timelineDetail) {
+        timelineDetail.style.opacity = "0";
+        setTimeout(() => {
+          timelineDetail.textContent = `> ${descText}`;
+          timelineDetail.style.opacity = "1";
+        }, 150);
+      }
+    });
+  });
+
+  // Simulated Console Logs Stream
+  let logInterval = null;
+  const mockLogsList = [
+    "loading core dev modules...",
+    "establishing connection to database: NMIMS_DB... SUCCESS",
+    "checking memory levels... OK (98.4%)",
+    "checking system variables...",
+    "running diagnostic checks: html, css, js... ACTIVE",
+    "initializing automation_engine... SUCCESS",
+    "warning: coffee levels low (14%). please refill.",
+    "diagnosing skills matrix... angularjs, nodejs, tailwind detected",
+    "running PHP/XAMPP server diagnostic... local environment ONLINE",
+    "compiling fresh project code... SUCCESS",
+    "status report: Heer Shah portfolio fully optimized."
+  ];
+
+  function startConsoleLogs() {
+    if (!consoleLogs) return;
+    
+    // Clear and add initial logs
+    consoleLogs.innerHTML = "";
+    addLogLine("system booting...", "info");
+    addLogLine("authenticating user: HEER_SHAH... access GRANTED", "success");
+
+    let counter = 0;
+    
+    // Stop any existing interval
+    if (logInterval) clearInterval(logInterval);
+
+    logInterval = setInterval(() => {
+      const log = mockLogsList[counter % mockLogsList.length];
+      const isWarn = log.includes("warning");
+      const isSuccess = log.includes("SUCCESS") || log.includes("ONLINE") || log.includes("GRANTED");
+      let type = "info";
+      if (isWarn) type = "warn";
+      if (isSuccess) type = "success";
+      
+      addLogLine(log, type);
+      counter++;
+    }, 1500);
+  }
+
+  function stopConsoleLogs() {
+    if (logInterval) {
+      clearInterval(logInterval);
+      logInterval = null;
+    }
+  }
+
+  function addLogLine(text, type = "info") {
+    if (!consoleLogs) return;
+    const time = new Date().toLocaleTimeString();
+    const line = document.createElement("div");
+    line.className = `log-line ${type}`;
+    line.innerHTML = `<span class="log-time">[${time}]</span> <span class="log-text">${text}</span>`;
+    
+    consoleLogs.appendChild(line);
+    
+    // Auto scroll to bottom
+    consoleLogs.scrollTop = consoleLogs.scrollHeight;
+  }
+
 }); // END DOMContentLoaded
