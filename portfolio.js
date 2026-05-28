@@ -292,6 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     occasio: {
       title: "Ocassio",
       tech: "Node.js • AngularJS • HTML • CSS",
+      url: "https://heerlalala.github.io/ocassio-frontend/",
       points: [
         "A full-stack role-based event booking and ticket management system.",
         "Built separate dashboards for guests and organizers to manage events and check-ins.",
@@ -302,6 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
     voyage: {
       title: "Voyage - Smart Trip Planner",
       tech: "HTML • CSS • JavaScript",
+      url: "https://heerlalala.github.io/trip-planner/",
       points: [
         "Designed an interactive smart trip planning dashboard helping users draft and organize itineraries.",
         "Supports dynamic day-by-day task lists, activity groupings, and destination status tags.",
@@ -312,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
     portfolio: {
       title: "Portfolio Web Application",
       tech: "HTML • CSS • JS • GSAP Animation",
+      url: "https://heerlalala.github.io/Portfolio-Web-Application/",
       points: [
         "Created a highly interactive custom horizontal slider showcasing developer records and skills.",
         "Implements GSAP slide movement, transition lock screens, and tabbed terminal dashboard widgets.",
@@ -329,7 +332,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const p = projectData[key];
     projectDetails.innerHTML = `
-      <h3>${p.title}</h3>
+      <div class="project-details-header">
+        <h3>${p.title}</h3>
+        <button class="preview-btn" data-url="${p.url}">🖥️ Live Preview</button>
+      </div>
       <div class="tech">${p.tech}</div>
       <ul>
         ${p.points.map(pt => `<li>${pt}</li>`).join("")}
@@ -634,6 +640,38 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Auto scroll to bottom
     consoleLogs.scrollTop = consoleLogs.scrollHeight;
+  }
+
+  // Live Preview Modal Interaction
+  const previewModal = document.getElementById("previewModal");
+  const previewIframe = document.getElementById("previewIframe");
+  const previewAddress = document.getElementById("previewAddress");
+  const closePreviewBtn = document.getElementById("closePreviewBtn");
+
+  // Event delegation for preview buttons
+  document.addEventListener("click", e => {
+    const btn = e.target.closest(".preview-btn");
+    if (btn && previewModal && previewIframe) {
+      const url = btn.dataset.url;
+      previewIframe.src = url;
+      if (previewAddress) previewAddress.textContent = url;
+      previewModal.classList.add("show");
+    }
+  });
+
+  if (closePreviewBtn && previewModal && previewIframe) {
+    closePreviewBtn.addEventListener("click", () => {
+      previewModal.classList.remove("show");
+      previewIframe.src = ""; // Unload iframe to stop audio/scripts
+    });
+
+    // Close on click outside content
+    previewModal.addEventListener("click", e => {
+      if (e.target === previewModal) {
+        previewModal.classList.remove("show");
+        previewIframe.src = "";
+      }
+    });
   }
 
 }); // END DOMContentLoaded
