@@ -1337,19 +1337,11 @@ body:not(.light) .snake-node .label {
   justify-content: center;
 }
 
+/* Skills Chamber Body Layout */
 .jar-glass {
   width: 260px;
   height: 320px;
-
-  border-radius: 140px 140px 160px 160px;
-  /* FULL JAR */
-  border: 3px solid rgba(255, 255, 255, 0.6);
-
-  background: linear-gradient(160deg,
-      rgba(255, 255, 255, 0.28),
-      rgba(255, 255, 255, 0.08));
-
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
 }
 
 /* =========================
@@ -1416,50 +1408,51 @@ body:not(.light) .snake-node .label {
   justify-content: center;
 }
 
-/* Jar lid MUST be absolute */
-/* =========================
-   JAR LID (TEXT FIX)
-========================= */
-
+/* High-Tech Scanner Lid */
 .jar-lid {
   position: absolute;
-  top: -28px;
+  top: -24px;
   left: 50%;
   transform: translateX(-50%);
 
   width: 200px;
   height: 42px;
 
-  background: rgba(255, 255, 255, 0.95);
-  color: #0f172a;
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--accent);
 
-  border-radius: 14px;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border: 1px solid rgba(99, 179, 237, 0.4);
+  border-bottom: 2px solid #63b3ed;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 
   z-index: 10;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(99, 179, 237, 0.2);
 }
 
-/* =========================
-   FIX JAR BODY
-========================= */
-
+/* Sci-Fi Skill Chamber Body */
 .jar-glass {
   width: 260px;
   height: 320px;
 
-  border-radius: 130px 130px 160px 160px;
-  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  border: 2px solid rgba(99, 179, 237, 0.35);
 
-  background: linear-gradient(160deg,
-      rgba(255, 255, 255, 0.28),
-      rgba(255, 255, 255, 0.08));
+  background: 
+    linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)),
+    linear-gradient(90deg, rgba(99, 179, 237, 0.02) 1px, transparent 1px),
+    linear-gradient(rgba(99, 179, 237, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 20px 20px, 20px 20px;
 
   display: flex;
   align-items: center;
@@ -1555,51 +1548,52 @@ body:not(.light) .snake-node .label {
   position: relative;
 }
 
-/* Glass shine & depth */
+/* Glowing sci-fi depth */
 .jar-glass {
-  background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.28) 0%,
-      rgba(255, 255, 255, 0.14) 40%,
-      rgba(255, 255, 255, 0.06) 100%);
-
   box-shadow:
-    inset 0 0 30px rgba(255, 255, 255, 0.25),
-    inset -10px -20px 40px rgba(0, 0, 0, 0.15),
-    0 25px 50px rgba(0, 0, 0, 0.35);
+    0 15px 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(99, 179, 237, 0.15),
+    inset 0 0 25px rgba(99, 179, 237, 0.1);
 
-  transition: box-shadow 0.6s ease;
+  transition: box-shadow 0.6s ease, border-color 0.6s ease;
 }
 
-/* Subtle glow when opened */
+/* Glowing tech activation when opened */
 .jar-container.open .jar-glass {
   box-shadow:
-    inset 0 0 40px rgba(56, 189, 248, 0.35),
-    0 0 40px rgba(56, 189, 248, 0.25),
-    0 30px 60px rgba(0, 0, 0, 0.4);
+    0 0 45px rgba(99, 179, 237, 0.4),
+    0 0 75px rgba(183, 148, 246, 0.2),
+    inset 0 0 30px rgba(99, 179, 237, 0.25);
+  border-color: rgba(99, 179, 237, 0.7);
 }
 
 .jar-lid {
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+  transition: transform 0.6s ease, box-shadow 0.6s ease, opacity 0.6s ease;
+}
 
-  letter-spacing: 0.4px;
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
+/* Sliding animation on open */
+.jar-container.open .jar-lid {
+  transform: translateX(-50%) translateY(-45px) scale(0.9);
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* Lift feel on hover */
 .jar-lid:hover {
   transform: translateX(-50%) translateY(-2px);
   box-shadow:
-    0 14px 30px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    0 10px 25px rgba(99, 179, 237, 0.3),
+    0 0 15px rgba(99, 179, 237, 0.2);
 }
 
+/* Glowing Activation Text */
 .jar-text {
-  color: #0f172a;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(99, 179, 237, 0.5);
 }
 
 .skill-group h4 {
@@ -2422,22 +2416,7 @@ body:not(.light) .snake-node .label {
   visibility: hidden !important;
 }
 
-/* =========================
-   RESPONSIVE (MOBILE)
-========================= */
-
-@media (max-width: 900px) {
-  .contact-row {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .flashcard-panel,
-  .game-panel {
-    width: 100%;
-    max-width: 420px;
-  }
-}
+/* Responsive styling moved to end of file */
 
 .game-column {
   display: flex;
@@ -2664,77 +2643,421 @@ body:not(.light) .snake-node .label {
   box-shadow: 0 0 25px rgba(99, 179, 237, 0.4);
 }
 
-@media (max-width: 900px) {
-  .contact-row {
-    padding: 24px 16px;
-    gap: 32px;
-  }
-}
+/* ==========================================
+   MOBILE & TABLET RESPONSIVE STYLES
+   ========================================== */
 
 @media (max-width: 900px) {
-  .game-panel {
-    width: 100%;
-    height: auto;
-    padding: 16px;
-  }
-
-  .bird-game {
-    height: 180px;
-  }
-}
-
-@media (max-width: 900px) {
-  .game-controls {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .game-btn {
-    flex: 1;
-    max-width: 48%;
-  }
-}
-
-@media (max-width: 900px) {
-
-  .flashcard-container,
-  .flashcard-controls {
-    width: 100%;
-  }
-}
-
-@media (max-width: 900px) {
-  * {
-    transform: none !important;
-  }
-}
-
-@media (max-width: 900px) {
+  /* Prevent scrolling horizontally on body */
   body {
     overflow-x: hidden;
   }
 
-  section,
-  .slide,
+  /* Slide Base Override */
+  .slide {
+    padding: 40px 20px;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+
   .slide-content {
+    max-width: 100%;
     width: 100%;
-    height: auto;
-    min-height: 100vh;
+    margin: 0;
+  }
+
+  /* Typography */
+  .intro h1 {
+    font-size: 2.6rem;
+    text-align: center;
+  }
+  .intro h3 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .intro p {
+    text-align: center;
+  }
+  .about h2,
+  .tools h2,
+  .slide.skills h2,
+  .projects h2,
+  .experience h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  /* Slide 1: Intro & Unlock */
+  .intro {
+    justify-content: flex-start;
+    padding-top: 60px;
+    padding-bottom: 20px;
+  }
+  .intro .slide-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
+  }
+  .intro-meta {
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .intro-meta span {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  .quick-actions {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    z-index: 10;
+  }
+  .qa-btn {
+    padding: 8px 12px;
+    border-radius: 20px;
+    opacity: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  .qa-btn span {
+    font-size: 0.8rem;
+    opacity: 1;
+    max-width: none;
+    overflow: visible;
+  }
+  .qa-btn:hover {
+    transform: none;
+  }
+  .unlock-area {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin: 20px auto 0;
+    gap: 12px;
+    animation: unlockFloatMobile 4s ease-in-out infinite;
+  }
+  @keyframes unlockFloatMobile {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .lock {
+    font-size: 3.5rem;
+  }
+  .key {
+    font-size: 3rem;
+  }
+  .unlock-text {
+    font-size: 0.8rem;
+  }
+
+  /* Slide 2: About & Roadmap */
+  .slide.about {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+  }
+  .about .slide-content {
+    margin-bottom: 16px;
+  }
+  .about-highlight {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .about ul {
+    margin-top: 12px;
+  }
+  .about li {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  .snake-roadmap {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: scale(0.85);
+    transform-origin: center top;
+    margin: 20px auto 0;
+    width: 380px;
+    height: 380px;
+  }
+  .snake-node .tooltip {
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: calc(100% + 12px) !important;
+    transform: translateX(-50%) translateY(10px) !important;
+    width: 200px;
+  }
+  .snake-node:hover .tooltip {
+    transform: translateX(-50%) translateY(0) !important;
+  }
+  .snake-node .tooltip::before {
+    display: none !important;
+  }
+
+  /* Slide 3: Tools & Tech */
+  .slide.tools {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+  }
+  .tools-grid {
+    justify-content: center;
+    margin-top: 16px;
+    gap: 8px;
+  }
+  .tools-grid span {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  .orbital-stack {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 420px;
+    margin: 30px auto 0;
+    padding-top: 50px;
+    gap: 16px;
+  }
+  .core {
+    top: 5px;
+    width: 120px;
+    height: 40px;
+    font-size: 0.75rem;
+  }
+  .tech-card {
+    padding: 16px 20px;
+    border-radius: 16px;
+  }
+  .tech-card-title {
+    font-size: 1rem;
+  }
+  .tech-card-items {
+    font-size: 0.8rem;
+  }
+  .tech-card-ui::after,
+  .tech-card-backend::after {
+    bottom: -16px;
+    height: 16px;
+  }
+
+  /* Slide 4: Skills */
+  .slide.skills {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+  }
+  .skills-main {
+    grid-template-columns: 1fr !important;
+    gap: 30px;
+    justify-items: center;
+  }
+  .jar-container {
+    width: 220px;
+    height: 270px;
+  }
+  .jar-glass {
+    width: 220px;
+    height: 270px;
+    border-radius: 12px;
+  }
+  .jar-lid {
+    top: -24px;
+    width: 170px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+  .jar-text {
+    font-size: 1.1rem;
+  }
+  .skills-groups {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .skill-group h4 {
+    font-size: 1.15rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .skill-row {
+    justify-content: center;
+    gap: 8px 12px;
+  }
+  .skill {
+    font-size: 0.95rem;
+    padding: 3px 10px;
+  }
+
+  /* Slide 5: Projects */
+  .slide.projects {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+  }
+  .projects-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .projects-menu {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 16px;
+  }
+  .projects-menu h2 {
+    grid-column: span 2;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  .project-item {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+  .project-item span {
+    font-size: 0.75rem;
+  }
+  .project-details {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .project-details h3 {
+    font-size: 1.5rem;
+  }
+  .project-details .tech {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  .project-details li {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  /* Slide 6: Experience */
+  .slide.experience {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+  }
+  .experience-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .experience-header h3 {
+    font-size: 1.2rem;
+  }
+  .duration {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+  }
+  .company {
+    font-size: 0.95rem;
+    margin-top: 6px;
+  }
+  .experience-points {
+    margin-top: 16px;
+  }
+  .experience-points li {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  /* Slide 7: Contact & Game */
+  .slide.contact {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+  }
+  .contact-row {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0;
+  }
+  .flashcard-panel,
+  .game-column {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .flashcard-container {
+    width: 420px;
+    height: 240px;
+  }
+  .flashcard {
+    padding: 24px;
+    border-radius: 16px;
+  }
+  .flashcard h3 {
+    font-size: 1.6rem;
+  }
+  .flashcard p,
+  .flashcard a {
+    font-size: 1rem;
+  }
+  .flashcard-controls {
+    width: 420px;
   }
 }
 
-@media (max-width: 900px) {
-
-  .roadmap,
-  .mindmap,
-  .skills-map {
-    position: relative !important;
-    transform: none !important;
+/* Small Device Adjustments (e.g. Phones <= 450px) */
+@media (max-width: 450px) {
+  .snake-roadmap {
+    transform: scale(0.72) translateX(-15%);
+    transform-origin: center top;
   }
+  .flashcard-panel {
+    transform: scale(0.85);
+    transform-origin: center top;
+  }
+  .game-column {
+    transform: scale(0.85);
+    transform-origin: center top;
+    margin-top: -30px; /* Offset the scale empty space */
+  }
+  .projects-menu {
+    grid-template-columns: 1fr;
+  }
+  .projects-menu h2 {
+    grid-column: span 1;
+  }
+}
 
-  .roadmap * {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
+@media (max-width: 370px) {
+  .snake-roadmap {
+    transform: scale(0.62) translateX(-25%);
+  }
+  .flashcard-panel {
+    transform: scale(0.75);
+  }
+  .game-column {
+    transform: scale(0.75);
+    margin-top: -60px;
   }
 }

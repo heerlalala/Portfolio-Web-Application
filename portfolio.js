@@ -65,6 +65,37 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => scrollLock = false, 450);
   }, { passive: false });
 
+  // Swipe Gestures for Mobile
+  let touchStartX = 0;
+  let touchStartY = 0;
+  
+  document.addEventListener("touchstart", e => {
+    if (e.target.closest(".bird-game") || e.target.closest(".game-controls") || e.target.closest(".game-panel")) {
+      return;
+    }
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  document.addEventListener("touchend", e => {
+    if (e.target.closest(".bird-game") || e.target.closest(".game-controls") || e.target.closest(".game-panel")) {
+      return;
+    }
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+    
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+    
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      if (dx < 0) {
+        goToSlide(currentSlide + 1);
+      } else {
+        goToSlide(currentSlide - 1);
+      }
+    }
+  }, { passive: true });
+
   /* =========================
      QUICK ACTION BUTTONS
   ========================== */
@@ -418,6 +449,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (birdGame) {
+      // Prevent touch events in game from scrolling the page
+      birdGame.addEventListener("touchstart", e => {
+        e.preventDefault();
+        if (!gameRunning) {
+          resetGame();
+        }
+        jump();
+      }, { passive: false });
+
       birdGame.addEventListener("click", () => {
         if (!gameRunning) {
           resetGame();
