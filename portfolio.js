@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
     projectDetails.innerHTML = `
       <div class="project-details-header">
         <h3>${p.title}</h3>
-        <button class="preview-btn" data-url="${p.url}">🖥️ Live Preview</button>
+        <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="preview-btn">🖥️ Live Preview</a>
       </div>
       <div class="tech">${p.tech}</div>
       <ul>
@@ -640,38 +640,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Auto scroll to bottom
     consoleLogs.scrollTop = consoleLogs.scrollHeight;
-  }
-
-  // Live Preview Modal Interaction
-  const previewModal = document.getElementById("previewModal");
-  const previewIframe = document.getElementById("previewIframe");
-  const previewAddress = document.getElementById("previewAddress");
-  const closePreviewBtn = document.getElementById("closePreviewBtn");
-
-  // Event delegation for preview buttons
-  document.addEventListener("click", e => {
-    const btn = e.target.closest(".preview-btn");
-    if (btn && previewModal && previewIframe) {
-      const url = btn.dataset.url;
-      previewIframe.src = url;
-      if (previewAddress) previewAddress.textContent = url;
-      previewModal.classList.add("show");
-    }
-  });
-
-  if (closePreviewBtn && previewModal && previewIframe) {
-    closePreviewBtn.addEventListener("click", () => {
-      previewModal.classList.remove("show");
-      previewIframe.src = ""; // Unload iframe to stop audio/scripts
-    });
-
-    // Close on click outside content
-    previewModal.addEventListener("click", e => {
-      if (e.target === previewModal) {
-        previewModal.classList.remove("show");
-        previewIframe.src = "";
-      }
-    });
   }
 
 }); // END DOMContentLoaded
