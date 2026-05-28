@@ -370,13 +370,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const birdGame = document.querySelector(".bird-game");
 
   if (bird && pipe && scoreEl && gameOverBox && birdGame) {
-    let birdY = 100;
+    let birdY = 130;
     let velocity = 0;
     const gravity = 0.5;
     const jumpForce = -7.5;
 
-    let pipeX = 480;
-    const speed = 3;
+    let pipeX = 580;
+    const speed = 3.5;
 
     let score = 0;
     let gameRunning = false;
