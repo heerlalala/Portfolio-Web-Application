@@ -289,77 +289,34 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================== */
 
   const projectData = {
-    portal: {
-      title: "Portal",
-      tech: "HTML • CSS • Backend",
+    occasio: {
+      title: "Ocassio",
+      tech: "Node.js • AngularJS • HTML • CSS",
       points: [
-        "This project simulates a real institutional system used in colleges and universities.",
-        "Designed a centralized college portal with role-based access control for students, faculty, and administrators.",
-        "Built separate dashboards for each role, ensuring users only access features relevant to their permissions.",
-        "Implemented secure authentication with session handling and protected routes.",
-        "Enabled dynamic content rendering based on user roles (announcements, uploads, approvals).",
-        "Focused on clean UI, intuitive navigation, and scalability for future academic modules."
+        "A full-stack role-based event booking and ticket management system.",
+        "Built separate dashboards for guests and organizers to manage events and check-ins.",
+        "Implemented real-time ticket checkout with automated ticketing workflow.",
+        "Integrated secure backend route (/sendTicketEmail) for automated HTML mail distribution of tickets."
       ]
     },
-    budget: {
-      title: "Budget Manager",
-      tech: "Python • Finance Engine • GUI",
+    voyage: {
+      title: "Voyage - Smart Trip Planner",
+      tech: "HTML • CSS • JavaScript",
       points: [
-        "Demonstrates strong problem-solving, data handling, and system design skills.",
-        "Developed a custom-built finance engine in Python to track income, expenses, and budget limits.",
-        "Designed an interactive GUI allowing users to add, edit, undo actions, and navigate data seamlessly.",
-        "Integrated Excel/data entry support for importing and managing real-world financial records.",
-        "Automated spending analysis to provide insight-driven feedback for better financial decisions.",
-        "Built entirely from scratch without third-party finance libraries."
+        "Designed an interactive smart trip planning dashboard helping users draft and organize itineraries.",
+        "Supports dynamic day-by-day task lists, activity groupings, and destination status tags.",
+        "Engineered using fluid CSS grid structures with clean glassmorphic design elements.",
+        "Optimized for legibility and cross-device responsive layout rendering."
       ]
     },
-    ngo: {
-      title: "NGO Activity & Biodiversity Dashboard",
-      tech: "HTML • CSS • PHP • MySQL",
+    portfolio: {
+      title: "Portfolio Web Application",
+      tech: "HTML • CSS • JS • GSAP Animation",
       points: [
-        "This project combines environmental awareness with full-stack web development and content automation.",
-        "Dashboard to track NGO activities by category and event type.",
-        "Biodiversity module with slideshow widgets and auto-generated pages.",
-        "Delete-sync system for images, data, and content.",
-        "Categorized NGO initiatives by activity type, region, and event.",
-        "Enabled structured data visualization for impact monitoring.",
-        "Allowed editable content storage for biodiversity descriptions and images.",
-        "Enabled non-technical users to update information easily."
-      ]
-    },
-    event: {
-      title: "Event Management Website (Ocassio)",
-      tech: "HTML • CSS • Node.js • AngularJS",
-      points: [
-        "Simulates a production-ready event booking and ticketing system.",
-        "Built a role-based event platform where organizers create and manage events, while users receive live updates.",
-        "Implemented a real-time payment workflow integrated with automated ticket generation.",
-        "Engineered an email automation system that sends instant, personalized HTML tickets upon successful payment.",
-        "Designed a robust backend endpoint (/sendTicketEmail) to handle high-volume, error-controlled email delivery.",
-        "Ensured seamless coordination between frontend actions and backend services."
-      ]
-    },
-    hotel: {
-      title: "Hotel Management Network",
-      tech: "Cisco Packet Tracer",
-      points: [
-        "Demonstrates practical understanding of enterprise-level network design.",
-        "Designed a multi-building hotel network with a unified static IP-based WiFi infrastructure.",
-        "Configured routing to enable seamless communication between hotel blocks and departments.",
-        "Implemented packet tracing to monitor data flow and troubleshoot connectivity.",
-        "Simulated real-world hotel networking scenarios including device management and inter-block communication."
-      ]
-    },
-    school: {
-      title: "School Management Network",
-      tech: "Cisco Packet Tracer",
-      points: [
-        "Represents a real-world academic campus networking model.",
-        "Designed a campus-wide network connecting multiple academic buildings.",
-        "Configured VLANs to segment traffic between departments (Admin, Faculty, Students).",
-        "Implemented DHCP for dynamic IP allocation and SSH for secure remote access.",
-        "Used ICMP protocols to test and validate network connectivity.",
-        "Applied packet tracing to ensure efficient, secure, and monitored communication across all blocks."
+        "Created a highly interactive custom horizontal slider showcasing developer records and skills.",
+        "Implements GSAP slide movement, transition lock screens, and tabbed terminal dashboard widgets.",
+        "Includes a custom HTML5 canvas Flappy Bird game and responsive touch gestures for mobile screens.",
+        "Designed with CSS HSL variables, cyberpunk animations, and clean responsive stacking."
       ]
     }
   };
@@ -390,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Render default project
-    renderProject("portal");
+    renderProject("occasio");
   }
 
   /* =========================
