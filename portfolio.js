@@ -369,23 +369,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const restartBtn = document.querySelector(".game-btn.ghost");
   const birdGame = document.querySelector(".bird-game");
 
-  if (bird && pipe && scoreEl && gameOverBox) {
-    let birdY = 70;
+  if (bird && pipe && scoreEl && gameOverBox && birdGame) {
+    let birdY = 100;
     let velocity = 0;
-    const gravity = 0.6;
-    const jumpForce = -8;
+    const gravity = 0.5;
+    const jumpForce = -7.5;
 
-    let pipeX = 420;
+    let pipeX = 480;
     const speed = 3;
 
     let score = 0;
     let gameRunning = false;
     let paused = false;
 
+    // Helper to get game bounds dynamically
+    function getGameHeight() {
+      return birdGame.clientHeight || 240;
+    }
+
+    function getGameWidth() {
+      return birdGame.clientWidth || 440;
+    }
+
+    function randomizePipeHeight() {
+      const gameH = getGameHeight();
+      // Leave at least 90px gap for the bird to fly through (bird is ~28px)
+      const minHeight = 40;
+      const maxHeight = gameH - 100;
+      const randomH = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+      pipe.style.height = randomH + "px";
+    }
+
     function resetGame() {
-      birdY = 70;
+      const gameH = getGameHeight();
+      const gameW = getGameWidth();
+      birdY = Math.floor(gameH / 2) - 15;
       velocity = 0;
-      pipeX = 420;
+      pipeX = gameW;
       score = 0;
       scoreEl.textContent = score;
       gameRunning = true;
@@ -393,16 +413,22 @@ document.addEventListener("DOMContentLoaded", () => {
       if (pauseBtn) pauseBtn.textContent = "⏸";
       gameOverBox.classList.add("hidden");
       bird.style.top = birdY + "px";
+      bird.style.transform = "rotate(0deg)";
       pipe.style.left = pipeX + "px";
+      randomizePipeHeight();
     }
 
     function jump() {
       if (!gameRunning || paused) return;
       velocity = jumpForce;
+      bird.style.transform = "rotate(-20deg)";
     }
 
     document.addEventListener("keydown", e => {
       if (e.code === "Space") {
+        const contactSlideIndex = Array.from(slides).indexOf(document.querySelector(".slide.contact"));
+        if (currentSlide !== contactSlideIndex) return;
+
         e.preventDefault();
         if (!gameRunning) {
           resetGame();
@@ -421,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
         jump();
       }, { passive: false });
 
-      birdGame.addEventListener("click", () => {
+      birdGame.addEventListener("click", (e) => {
         if (!gameRunning) {
           resetGame();
         }
@@ -432,28 +458,44 @@ document.addEventListener("DOMContentLoaded", () => {
     function endGame() {
       gameRunning = false;
       gameOverBox.classList.remove("hidden");
+      bird.style.transform = "rotate(70deg)";
     }
 
     // Game loop
     setInterval(() => {
       if (!gameRunning || paused) return;
 
+      const gameH = getGameHeight();
+      const gameW = getGameWidth();
+
       velocity += gravity;
       birdY += velocity;
       bird.style.top = birdY + "px";
 
+      // Rotate bird based on velocity
+      if (velocity > 0) {
+        // Falling
+        const degree = Math.min(70, velocity * 7);
+        bird.style.transform = `rotate(${degree}deg)`;
+      } else {
+        // Jumping
+        bird.style.transform = "rotate(-20deg)";
+      }
+
       pipeX -= speed;
       pipe.style.left = pipeX + "px";
 
-      if (pipeX < -40) {
-        pipeX = 420;
+      if (pipeX < -50) {
+        pipeX = gameW;
         score++;
         scoreEl.textContent = score;
+        randomizePipeHeight();
       }
 
       const birdRect = bird.getBoundingClientRect();
       const pipeRect = pipe.getBoundingClientRect();
 
+      // Check collision with the pipe
       if (
         birdRect.right > pipeRect.left &&
         birdRect.left < pipeRect.right &&
@@ -462,7 +504,9 @@ document.addEventListener("DOMContentLoaded", () => {
         endGame();
       }
 
-      if (birdY > 130 || birdY < 0) {
+      // Check boundary collision: floor or ceiling
+      // Bird size is roughly 30px. Ground height is 6px.
+      if (birdY > (gameH - 36) || birdY < 0) {
         endGame();
       }
     }, 20);
@@ -478,7 +522,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (pauseBtn) {
-      pauseBtn.addEventListener("click", () => {
+      pauseBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent trigger jump/restart on birdGame click
         if (!gameRunning) return;
         paused = !paused;
         pauseBtn.textContent = paused ? "▶" : "⏸";
