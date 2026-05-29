@@ -43,9 +43,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updateSlide1Widgets();
+
+    // Update navigation active states
+    const navItems = document.querySelectorAll(".nav-item");
+    navItems.forEach((item, i) => {
+      item.classList.toggle("active", i === currentSlide);
+    });
   }
 
   updateSlide1Widgets(); // initialize on load
+
+  // Floating Nav Bar Interactions
+  const navItems = document.querySelectorAll(".nav-item");
+  navItems.forEach((item, idx) => {
+    item.addEventListener("click", e => {
+      e.preventDefault();
+      goToSlide(idx);
+
+      // On mobile, auto-close navigation menu
+      const navMenu = document.getElementById("navMenu");
+      if (navMenu && navMenu.classList.contains("open")) {
+        navMenu.classList.remove("open");
+        const toggleBtn = document.getElementById("menuToggleBtn");
+        if (toggleBtn) toggleBtn.classList.remove("active");
+      }
+    });
+  });
+
+  const menuToggleBtn = document.getElementById("menuToggleBtn");
+  const navMenu = document.getElementById("navMenu");
+  if (menuToggleBtn && navMenu) {
+    menuToggleBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      navMenu.classList.toggle("open");
+      menuToggleBtn.classList.toggle("active");
+    });
+  }
+
+  // Close nav menu when clicking outside
+  document.addEventListener("click", e => {
+    if (navMenu && navMenu.classList.contains("open") && !e.target.closest("#floatingNav")) {
+      navMenu.classList.remove("open");
+      if (menuToggleBtn) menuToggleBtn.classList.remove("active");
+    }
+  });
 
   document.addEventListener("keydown", e => {
     if (e.key === "ArrowRight") goToSlide(currentSlide + 1);
@@ -65,12 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => scrollLock = false, 450);
   }, { passive: false });
 
-  // Swipe Gestures for Mobile
+  // Swipe Gestures for Mobile (optimized to prevent vertical scroll conflicts)
   let touchStartX = 0;
   let touchStartY = 0;
   
   document.addEventListener("touchstart", e => {
-    if (e.target.closest(".bird-game") || e.target.closest(".game-controls") || e.target.closest(".game-panel")) {
+    if (e.target.closest("#birdGame") || e.target.closest(".game-controls") || e.target.closest(".game-panel")) {
       return;
     }
     touchStartX = e.changedTouches[0].screenX;
@@ -78,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { passive: true });
 
   document.addEventListener("touchend", e => {
-    if (e.target.closest(".bird-game") || e.target.closest(".game-controls") || e.target.closest(".game-panel")) {
+    if (e.target.closest("#birdGame") || e.target.closest(".game-controls") || e.target.closest(".game-panel")) {
       return;
     }
     const touchEndX = e.changedTouches[0].screenX;
@@ -87,7 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const dx = touchEndX - touchStartX;
     const dy = touchEndY - touchStartY;
     
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+    // Predominantly horizontal swipe checks
+    if (Math.abs(dx) > 2.5 * Math.abs(dy) && Math.abs(dx) > 80) {
       if (dx < 0) {
         goToSlide(currentSlide + 1);
       } else {
@@ -586,6 +628,11 @@ Router# write memory`
     let score = 0;
     let gameRunning = false;
     let paused = false;
+    let isGameActive = false;
+
+    const gameOverlay = document.getElementById("gameOverlay");
+    const startGameBtn = document.getElementById("startGameBtn");
+    const exitGameBtn = document.getElementById("exitGameBtn");
 
     // Helper to get game bounds dynamically
     function getGameHeight() {
@@ -606,6 +653,10 @@ Router# write memory`
     }
 
     function resetGame() {
+      isGameActive = true;
+      if (gameOverlay) gameOverlay.classList.add("hidden");
+      if (exitGameBtn) exitGameBtn.classList.remove("hidden");
+
       const gameH = getGameHeight();
       const gameW = getGameWidth();
       birdY = Math.floor(gameH / 2) - 15;
@@ -635,7 +686,9 @@ Router# write memory`
         if (currentSlide !== contactSlideIndex) return;
 
         e.preventDefault();
-        if (!gameRunning) {
+        if (!isGameActive) {
+          resetGame();
+        } else if (!gameRunning) {
           resetGame();
         }
         jump();
@@ -643,8 +696,10 @@ Router# write memory`
     });
 
     if (birdGame) {
-      // Prevent touch events in game from scrolling the page
+      // Prevent touch events in game from scrolling the page ONLY when actively playing
       birdGame.addEventListener("touchstart", e => {
+        if (!isGameActive) return; // Allow normal vertical scrolling on mobile when idle
+
         e.preventDefault();
         if (!gameRunning) {
           resetGame();
@@ -653,10 +708,41 @@ Router# write memory`
       }, { passive: false });
 
       birdGame.addEventListener("click", (e) => {
+        // If clicking action buttons, do not trigger jump/restart
+        if (e.target.closest("#startGameBtn") || e.target.closest("#exitGameBtn") || e.target.closest("#pauseBtn") || e.target.closest(".play-game-btn")) {
+          return;
+        }
+
+        if (!isGameActive) {
+          resetGame();
+          return;
+        }
+
         if (!gameRunning) {
           resetGame();
         }
         jump();
+      });
+    }
+
+    if (startGameBtn) {
+      startGameBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        resetGame();
+      });
+    }
+
+    if (exitGameBtn) {
+      exitGameBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        isGameActive = false;
+        gameRunning = false;
+        if (gameOverlay) gameOverlay.classList.remove("hidden");
+        exitGameBtn.classList.add("hidden");
+        gameOverBox.classList.add("hidden");
+        // Reset bird state visually
+        bird.style.top = "70px";
+        bird.style.transform = "rotate(0deg)";
       });
     }
 

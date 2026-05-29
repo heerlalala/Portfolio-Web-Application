@@ -22,6 +22,30 @@
 
 <body>
 
+  <!-- FLOATING GLASSMORPHIC NAVIGATION BAR -->
+  <nav class="floating-nav" id="floatingNav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" id="navLogo">Heer Shah</a>
+      <div class="nav-menu" id="navMenu">
+        <button class="nav-item active" data-slide="0">Intro</button>
+        <button class="nav-item" data-slide="1">About</button>
+        <button class="nav-item" data-slide="2">Tools</button>
+        <button class="nav-item" data-slide="3">Skills</button>
+        <button class="nav-item" data-slide="4">Projects</button>
+        <button class="nav-item" data-slide="5">Experience</button>
+        <button class="nav-item" data-slide="6">Contact</button>
+      </div>
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">🌙</button>
+        <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle Navigation Menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
   <!-- MAIN SLIDER -->
   <div class="slider" id="slider">
     <!-- INTRO -->
@@ -378,13 +402,25 @@
 
               <div class="game-header">
                 <span>Score: <span id="score">0</span></span>
-                <button id="pauseBtn">⏸</button>
+                <div class="game-header-actions">
+                  <button id="pauseBtn">⏸</button>
+                  <button id="exitGameBtn" class="exit-game-btn hidden">❌</button>
+                </div>
               </div>
 
-              <div class="bird-game">
+              <div class="bird-game" id="birdGame">
                 <div class="bird">🐦</div>
                 <div class="ground"></div>
                 <div class="pipe"></div>
+
+                <!-- GAME INTRO/TAP TO PLAY OVERLAY -->
+                <div class="game-overlay" id="gameOverlay">
+                  <div class="overlay-content">
+                    <span class="game-title">FLAPPY BIRD</span>
+                    <span class="game-instructions">Tap / Space to Jump</span>
+                    <button class="play-game-btn" id="startGameBtn">Play</button>
+                  </div>
+                </div>
               </div>
 
               <p class="game-hint">Space / Click to Jump</p>
