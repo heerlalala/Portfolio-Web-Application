@@ -2220,6 +2220,7 @@ body.light {
 
 .contact-stage {
   width: 100%;
+  max-width: none;
   display: flex;
   align-items: center;
   justify-content: center;
