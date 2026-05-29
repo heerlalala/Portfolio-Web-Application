@@ -589,11 +589,11 @@ Router# write memory`
 
     // Helper to get game bounds dynamically
     function getGameHeight() {
-      return birdGame.clientHeight || 460;
+      return birdGame.clientHeight || 320;
     }
 
     function getGameWidth() {
-      return birdGame.clientWidth || 580;
+      return birdGame.clientWidth || 660;
     }
 
     function randomizePipeHeight() {
