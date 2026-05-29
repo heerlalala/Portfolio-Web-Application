@@ -2412,9 +2412,8 @@ body.light {
   flex-direction: column;
   align-items: center;
   gap: 18px;
-  width: 100%;
-  max-width: 600px;
-  flex-shrink: 1;
+  width: 600px;
+  max-width: 100%;
 }
 
 .game-controls {
