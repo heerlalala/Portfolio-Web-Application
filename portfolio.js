@@ -331,7 +331,76 @@ document.addEventListener("DOMContentLoaded", () => {
         "Configured Inter-VLAN routing, VLAN assignments, and dynamic routing protocols (OSPF/RIP) for subnets.",
         "Integrated essential infrastructure services including DHCP, DNS, and HTTP servers inside the topology.",
         "Secured departmental boundaries using access control lists (ACLs) to manage traffic flows."
-      ]
+      ],
+      diagramSvg: `<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <line x1="200" y1="40" x2="100" y2="120" stroke="#63b3ed" stroke-width="2" filter="url(#glow)"/>
+  <line x1="200" y1="40" x2="300" y2="120" stroke="#63b3ed" stroke-width="2" filter="url(#glow)"/>
+  <line x1="100" y1="120" x2="50" y2="200" stroke="#63b3ed" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="100" y1="120" x2="120" y2="200" stroke="#63b3ed" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="300" y1="120" x2="220" y2="200" stroke="#63b3ed" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="300" y1="120" x2="350" y2="200" stroke="#63b3ed" stroke-width="1.5" stroke-dasharray="4"/>
+  <circle cx="200" cy="40" r="22" fill="#1a202c" stroke="#63b3ed" stroke-width="2" filter="url(#glow)"/>
+  <text x="200" y="45" font-size="16" text-anchor="middle">🌐</text>
+  <text x="200" y="15" font-size="10" fill="#a0aec0" text-anchor="middle" font-weight="bold">Core Router</text>
+  <text x="200" y="74" font-size="9" fill="#a0aec0" text-anchor="middle">192.168.1.1</text>
+  <circle cx="100" cy="120" r="18" fill="#1a202c" stroke="#319795" stroke-width="2"/>
+  <text x="100" y="125" font-size="14" text-anchor="middle">🖧</text>
+  <text x="100" y="95" font-size="10" fill="#81e6d9" text-anchor="middle" font-weight="bold">Academics SW</text>
+  <text x="100" y="148" font-size="8" fill="#81e6d9" text-anchor="middle">VLAN 10</text>
+  <circle cx="300" cy="120" r="18" fill="#1a202c" stroke="#9f7aea" stroke-width="2"/>
+  <text x="300" y="125" font-size="14" text-anchor="middle">🖧</text>
+  <text x="300" y="95" font-size="10" fill="#d6bcfa" text-anchor="middle" font-weight="bold">Admin SW</text>
+  <text x="300" y="148" font-size="8" fill="#d6bcfa" text-anchor="middle">VLAN 20</text>
+  <circle cx="50" cy="200" r="14" fill="#2d3748" stroke="#319795" stroke-width="1.5"/>
+  <text x="50" y="204" font-size="12" text-anchor="middle">🖥️</text>
+  <text x="50" y="224" font-size="8" fill="#a0aec0" text-anchor="middle">Lab PC</text>
+  <circle cx="120" cy="200" r="14" fill="#2d3748" stroke="#319795" stroke-width="1.5"/>
+  <text x="120" y="204" font-size="12" text-anchor="middle">🖥️</text>
+  <text x="120" y="224" font-size="8" fill="#a0aec0" text-anchor="middle">Local Server</text>
+  <circle cx="220" cy="200" r="14" fill="#2d3748" stroke="#9f7aea" stroke-width="1.5"/>
+  <text x="220" y="204" font-size="12" text-anchor="middle">🖥️</text>
+  <text x="220" y="224" font-size="8" fill="#a0aec0" text-anchor="middle">Staff PC</text>
+  <circle cx="350" cy="200" r="14" fill="#2d3748" stroke="#9f7aea" stroke-width="1.5"/>
+  <text x="350" y="204" font-size="12" text-anchor="middle">🖥️</text>
+  <text x="350" y="224" font-size="8" fill="#a0aec0" text-anchor="middle">Billing PC</text>
+</svg>`,
+      cliCommands: `! --- CAMPUS NETWORK ROUTER CONFIG ---
+Router> enable
+Router# configure terminal
+
+! 1. Configure Subnets & VLAN encapsulation
+Router(config)# interface gigabitEthernet 0/0.10
+Router(config-subif)# encapsulation dot1Q 10
+Router(config-subif)# ip address 192.168.10.1 255.255.255.0
+Router(config-subif)# exit
+
+Router(config)# interface gigabitEthernet 0/0.20
+Router(config-subif)# encapsulation dot1Q 20
+Router(config-subif)# ip address 192.168.20.1 255.255.255.0
+Router(config-subif)# exit
+
+! 2. Configure dynamic OSPF Routing
+Router(config)# router ospf 1
+Router(config-router)# network 192.168.10.0 0.0.0.255 area 0
+Router(config-router)# network 192.168.20.0 0.0.0.255 area 0
+Router(config-router)# exit
+
+! 3. Configure Security Access Control List (ACL)
+Router(config)# access-list 101 deny ip 192.168.20.0 0.0.0.255 192.168.10.0 0.0.0.255
+Router(config)# access-list 101 permit ip any any
+Router(config)# interface gigabitEthernet 0/0.10
+Router(config-subif)# ip access-group 101 out
+Router(config-subif)# end
+Router# write memory`
     },
     hotelNetwork: {
       title: "Hotel Management Network",
@@ -342,7 +411,68 @@ document.addEventListener("DOMContentLoaded", () => {
         "Implemented secure guest Wi-Fi access points isolated from the core administration networks using VLANs.",
         "Configured network address translation (NAT/PAT) and dynamic IP allocation workflows (DHCP server).",
         "Simulated end-to-end connectivity, local routing tables, and switchport security configurations."
-      ]
+      ],
+      diagramSvg: `<svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <line x1="200" y1="40" x2="200" y2="105" stroke="#a3bffa" stroke-width="2" filter="url(#glow2)"/>
+  <line x1="200" y1="105" x2="80" y2="160" stroke="#f687b3" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="200" y1="105" x2="200" y2="180" stroke="#4fd1c5" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="200" y1="105" x2="320" y2="160" stroke="#f6ad55" stroke-width="1.5" stroke-dasharray="4"/>
+  <line x1="80" y1="160" x2="80" y2="215" stroke="#f687b3" stroke-width="1"/>
+  <circle cx="200" cy="40" r="22" fill="#1a202c" stroke="#a3bffa" stroke-width="2" filter="url(#glow2)"/>
+  <text x="200" y="45" font-size="16" text-anchor="middle">🌐</text>
+  <text x="200" y="15" font-size="10" fill="#a0aec0" text-anchor="middle" font-weight="bold">Gateway Router</text>
+  <text x="200" y="74" font-size="9" fill="#a0aec0" text-anchor="middle">NAT/PAT Active</text>
+  <circle cx="200" cy="105" r="18" fill="#1a202c" stroke="#4cbd97" stroke-width="2"/>
+  <text x="200" y="110" font-size="14" text-anchor="middle">🖧</text>
+  <text x="242" y="110" font-size="10" fill="#81e6d9" font-weight="bold">Core SW</text>
+  <circle cx="80" cy="160" r="16" fill="#1a202c" stroke="#f687b3" stroke-width="2"/>
+  <text x="80" y="165" font-size="13" text-anchor="middle">📡</text>
+  <text x="80" y="138" font-size="10" fill="#f687b3" text-anchor="middle" font-weight="bold">Guest AP</text>
+  <text x="80" y="186" font-size="8" fill="#f687b3" text-anchor="middle">VLAN 30 (Guest)</text>
+  <circle cx="320" cy="160" r="16" fill="#1a202c" stroke="#f6ad55" stroke-width="2"/>
+  <text x="320" y="165" font-size="13" text-anchor="middle">🖧</text>
+  <text x="320" y="138" font-size="10" fill="#f6ad55" text-anchor="middle" font-weight="bold">Lobby SW</text>
+  <text x="320" y="186" font-size="8" fill="#f6ad55" text-anchor="middle">VLAN 40 (Admin)</text>
+  <circle cx="200" cy="205" r="16" fill="#1a202c" stroke="#4fd1c5" stroke-width="2"/>
+  <text x="200" y="210" font-size="13" text-anchor="middle">💾</text>
+  <text x="200" y="233" font-size="8" fill="#4fd1c5" text-anchor="middle">Admin Server</text>
+  <circle cx="80" cy="225" r="10" fill="#2d3748" stroke="#f687b3" stroke-width="1.5"/>
+  <text x="80" y="228" font-size="9" text-anchor="middle">📱</text>
+</svg>`,
+      cliCommands: `! --- HOTEL NETWORK CONFIGURATION ---
+Switch> enable
+Switch# configure terminal
+
+! 1. Configure Port Security on Switch FastEthernet ports
+Switch(config)# interface range fastEthernet 0/1 - 12
+Switch(config-if-range)# switchport mode access
+Switch(config-if-range)# switchport access vlan 30
+Switch(config-if-range)# switchport port-security
+Switch(config-if-range)# switchport port-security maximum 2
+Switch(config-if-range)# switchport port-security violation shutdown
+Switch(config-if-range)# exit
+
+! 2. Configure DHCP IP Pool for guest Wireless clients
+Router(config)# ip dhcp pool GuestPool
+Router(config-dhcp)# network 172.16.30.0 255.255.255.0
+Router(config-dhcp)# default-router 172.16.30.1
+Router(config-dhcp)# dns-server 8.8.8.8
+Router(config-dhcp)# exit
+
+! 3. Configure Dynamic NAT Overload (PAT)
+Router(config)# access-list 1 permit 172.16.30.0 0.0.0.255
+Router(config)# ip nat inside source list 1 interface gigabitEthernet 0/1 overload
+Router(config)# end
+Router# write memory`
     }
   };
 
@@ -355,17 +485,67 @@ document.addEventListener("DOMContentLoaded", () => {
     const p = projectData[key];
     const isNetworking = key.includes("Network");
     const buttonText = isNetworking ? "📂 View Repository" : "🖥️ Live Preview";
-    
+
+    let showcaseHtml = "";
+    if (isNetworking) {
+      showcaseHtml = `
+        <div class="project-showcase-tabs">
+          <button class="showcase-tab active" data-showcase="diagram">Topology Diagram</button>
+          <button class="showcase-tab" data-showcase="commands">Cisco IOS CLI</button>
+        </div>
+        <div class="showcase-content active" id="showcase-diagram">
+          <div class="network-diagram-container">
+            ${p.diagramSvg}
+          </div>
+        </div>
+        <div class="showcase-content" id="showcase-commands">
+          <div class="cisco-terminal">
+            <div class="terminal-bar">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">Cisco IOS Switch/Router Console</span>
+            </div>
+            <pre class="terminal-body"><code>${p.cliCommands}</code></pre>
+          </div>
+        </div>
+      `;
+    }
+
     projectDetails.innerHTML = `
-      <div class="project-details-header">
-        <h3>${p.title}</h3>
-        <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="preview-btn">${buttonText}</a>
+      <div class="project-details-split">
+        <div class="project-info-side">
+          <div class="project-details-header">
+            <h3>${p.title}</h3>
+            <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="preview-btn">${buttonText}</a>
+          </div>
+          <div class="tech">${p.tech}</div>
+          <ul class="project-points">
+            ${p.points.map(pt => `<li>${pt}</li>`).join("")}
+          </ul>
+        </div>
+        ${isNetworking ? `
+        <div class="project-showcase-side">
+          ${showcaseHtml}
+        </div>
+        ` : ""}
       </div>
-      <div class="tech">${p.tech}</div>
-      <ul>
-        ${p.points.map(pt => `<li>${pt}</li>`).join("")}
-      </ul>
     `;
+
+    // Wire up showcase tab clicking
+    if (isNetworking) {
+      const tabs = projectDetails.querySelectorAll(".showcase-tab");
+      const contents = projectDetails.querySelectorAll(".showcase-content");
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          contents.forEach(c => c.classList.remove("active"));
+          tab.classList.add("active");
+          const target = projectDetails.querySelector(`#showcase-${tab.dataset.showcase}`);
+          if (target) target.classList.add("active");
+        });
+      });
+    }
   }
 
   if (projectButtons.length && projectDetails) {

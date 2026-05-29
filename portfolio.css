@@ -3089,4 +3089,150 @@ body.light {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(99, 179, 237, 0.55);
 }
+
+/* ==========================================
+   PROJECTS SHOWCASE: DIAGRAMS & CISCO CLI
+   ========================================== */
+.project-details-split {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+}
+
+.project-info-side {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-showcase-side {
+  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 15, 30, 0.45);
+  border: 1px solid rgba(99, 179, 237, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 280px;
+}
+
+.project-showcase-tabs {
+  display: flex;
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid rgba(99, 179, 237, 0.15);
+}
+
+.showcase-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  padding: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+}
+
+.showcase-tab.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.showcase-content {
+  display: none;
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.showcase-content.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Network Diagram Styling */
+.network-diagram-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+}
+
+.network-diagram-container svg {
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
+}
+
+/* Cisco Terminal Styling */
+.cisco-terminal {
+  display: flex;
+  flex-direction: column;
+  background: #07090e;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  height: 100%;
+  min-height: 220px;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: #11151f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 6px;
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-dot.red { background-color: #ef4444; }
+.terminal-dot.yellow { background-color: #f59e0b; }
+.terminal-dot.green { background-color: #10b981; }
+
+.terminal-title {
+  margin-left: 10px;
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.terminal-body {
+  flex: 1;
+  padding: 12px;
+  margin: 0;
+  overflow: auto;
+  font-family: monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #34d399; /* Emerald Green console output */
+  text-align: left;
+}
+
+.terminal-body code {
+  font-family: monospace;
+}
+
+/* Tablet & Mobile responsive stacks */
+@media (max-width: 900px) {
+  .project-details-split {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .project-showcase-side {
+    min-height: 280px;
+  }
+}
 
