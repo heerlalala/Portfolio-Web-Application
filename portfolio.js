@@ -321,6 +321,28 @@ document.addEventListener("DOMContentLoaded", () => {
         "Includes a custom HTML5 canvas Flappy Bird game and responsive touch gestures for mobile screens.",
         "Designed with CSS HSL variables, cyberpunk animations, and clean responsive stacking."
       ]
+    },
+    campusNetwork: {
+      title: "Campus Network Design",
+      tech: "Cisco Packet Tracer • Routing & Switching • VLANs • Subnetting",
+      url: "https://github.com/heerlalala/campus-network",
+      points: [
+        "Designed and simulated a comprehensive enterprise-grade network topology for a campus environment.",
+        "Configured Inter-VLAN routing, VLAN assignments, and dynamic routing protocols (OSPF/RIP) for subnets.",
+        "Integrated essential infrastructure services including DHCP, DNS, and HTTP servers inside the topology.",
+        "Secured departmental boundaries using access control lists (ACLs) to manage traffic flows."
+      ]
+    },
+    hotelNetwork: {
+      title: "Hotel Management Network",
+      tech: "Cisco Packet Tracer • Network Security • Wireless LAN • DHCP",
+      url: "https://github.com/heerlalala/hotel-management-network",
+      points: [
+        "Architected a scalable enterprise network model for a multi-floor hospitality establishment.",
+        "Implemented secure guest Wi-Fi access points isolated from the core administration networks using VLANs.",
+        "Configured network address translation (NAT/PAT) and dynamic IP allocation workflows (DHCP server).",
+        "Simulated end-to-end connectivity, local routing tables, and switchport security configurations."
+      ]
     }
   };
 
@@ -331,10 +353,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!projectDetails || !projectData[key]) return;
 
     const p = projectData[key];
+    const isNetworking = key.includes("Network");
+    const buttonText = isNetworking ? "📂 View Repository" : "🖥️ Live Preview";
+    
     projectDetails.innerHTML = `
       <div class="project-details-header">
         <h3>${p.title}</h3>
-        <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="preview-btn">🖥️ Live Preview</a>
+        <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="preview-btn">${buttonText}</a>
       </div>
       <div class="tech">${p.tech}</div>
       <ul>
