@@ -365,7 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
     },
     campusNetwork: {
-      title: "Campus Network Design",
+      title: "School Management Network",
       tech: "Cisco Packet Tracer • Routing & Switching • VLANs • Subnetting",
       url: "https://github.com/heerlalala/campus-network",
       points: [
