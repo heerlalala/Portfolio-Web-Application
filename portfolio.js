@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelectorAll(".slide");
   const totalSlides = slides.length;
 
-  let isUnlocked = false;
+  let isUnlocked = true;
 
   /* =========================
      SLIDE-1 ONLY WIDGET CONTROL
@@ -29,9 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function goToSlide(index) {
     if (!slider || index < 0 || index >= totalSlides) return;
-
-    // BLOCK slide 2 until unlocked
-    if (!isUnlocked && currentSlide === 0 && index === 1) return;
 
     currentSlide = index;
 
@@ -191,138 +188,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     SKILLS BOWL ANIMATION
-  ========================== */
-
-  const skills = document.querySelectorAll(".skill");
-  const bowl = document.getElementById("bowl");
-
-  if (bowl && skills.length) {
-    const velocities = [];
-
-    skills.forEach((skill, i) => {
-      skill.style.left = Math.random() * (bowl.clientWidth - 60) + "px";
-      skill.style.top = Math.random() * (bowl.clientHeight - 40) + "px";
-
-      velocities[i] = {
-        x: (Math.random() * 1.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1),
-        y: (Math.random() * 1.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1)
-      };
-    });
-
-    function animateSkills() {
-      skills.forEach((skill, i) => {
-        let x = skill.offsetLeft + velocities[i].x;
-        let y = skill.offsetTop + velocities[i].y;
-
-        if (x <= 0 || x >= bowl.clientWidth - skill.offsetWidth) velocities[i].x *= -1;
-        if (y <= 0 || y >= bowl.clientHeight - skill.offsetHeight) velocities[i].y *= -1;
-
-        skill.style.left = x + "px";
-        skill.style.top = y + "px";
-      });
-
-      requestAnimationFrame(animateSkills);
-    }
-
-    animateSkills();
-  }
-
-  /* =========================
      THEME TOGGLE
   ========================== */
 
   const toggle = document.getElementById("themeToggle");
   if (toggle) {
+    // Load theme from localStorage
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      document.body.classList.add("light");
+      toggle.textContent = "☀️";
+    }
+
     toggle.addEventListener("click", () => {
       document.body.classList.toggle("light");
-      toggle.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
-    });
-  }
-
-  /* =========================
-     UNLOCK AREA (KEY + LOCK)
-  ========================== */
-
-  const keyIcon = document.getElementById("keyIcon");
-  const lockIcon = document.getElementById("lockIcon");
-  const unlockArea = document.getElementById("unlockArea");
-
-  if (keyIcon && lockIcon && unlockArea) {
-    keyIcon.addEventListener("click", () => {
-      if (isUnlocked) return;
-
-      isUnlocked = true;
-
-      gsap.to(keyIcon, {
-        x: -40,
-        y: -20,
-        scale: 0.8,
-        duration: 0.4,
-        ease: "power2.out"
-      });
-
-      setTimeout(() => {
-        lockIcon.textContent = "🔓";
-        unlockArea.classList.add("unlocked");
-        goToSlide(1);
-      }, 450);
-    });
-  }
-
-  /* =========================
-     SLIDE 3 – TECH STACK CARD ANIMATIONS
-  ========================== */
-
-  // Elegant staggered reveal for floating tech cards
-  gsap.from(".orbit-ui .layer", {
-    y: 60,
-    opacity: 0,
-    duration: 1,
-    delay: 0.2,
-    ease: "power3.out"
-  });
-
-  gsap.from(".orbit-backend .layer", {
-    y: 60,
-    opacity: 0,
-    duration: 1,
-    delay: 0.4,
-    ease: "power3.out"
-  });
-
-  gsap.from(".orbit-infra .layer", {
-    y: 60,
-    opacity: 0,
-    duration: 1,
-    delay: 0.6,
-    ease: "power3.out"
-  });
-
-  // Core badge animation
-  gsap.from(".core", {
-    scale: 0,
-    opacity: 0,
-    duration: 0.8,
-    ease: "back.out(1.7)"
-  });
-
-  /* =========================
-     SLIDE 4 – SKILLS JAR
-  ========================== */
-
-  const jar = document.getElementById("jarTrigger");
-  const skillsContainer = document.getElementById("skillsGroups");
-
-  if (jar && skillsContainer) {
-    let opened = false;
-
-    jar.addEventListener("click", () => {
-      if (opened) return;
-      opened = true;
-
-      jar.classList.add("open");
-      skillsContainer.classList.add("show");
+      const isLight = document.body.classList.contains("light");
+      toggle.textContent = isLight ? "☀️" : "🌙";
+      localStorage.setItem("theme", isLight ? "light" : "dark");
     });
   }
 
@@ -925,7 +807,7 @@ Router# write memory`
     "checking system variables...",
     "running diagnostic checks: html, css, js... ACTIVE",
     "initializing automation_engine... SUCCESS",
-    "warning: coffee levels low (14%). please refill.",
+    "performing security check... system SECURED",
     "diagnosing skills matrix... angularjs, nodejs, tailwind detected",
     "running PHP/XAMPP server diagnostic... local environment ONLINE",
     "compiling fresh project code... SUCCESS",

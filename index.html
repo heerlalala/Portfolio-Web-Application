@@ -29,11 +29,10 @@
       <div class="nav-menu" id="navMenu">
         <button class="nav-item active" data-slide="0">Intro</button>
         <button class="nav-item" data-slide="1">About</button>
-        <button class="nav-item" data-slide="2">Tools</button>
-        <button class="nav-item" data-slide="3">Skills</button>
-        <button class="nav-item" data-slide="4">Projects</button>
-        <button class="nav-item" data-slide="5">Experience</button>
-        <button class="nav-item" data-slide="6">Contact</button>
+        <button class="nav-item" data-slide="2">Skills</button>
+        <button class="nav-item" data-slide="3">Projects</button>
+        <button class="nav-item" data-slide="4">Experience</button>
+        <button class="nav-item" data-slide="5">Contact</button>
       </div>
       <div class="nav-actions">
         <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">🌙</button>
@@ -51,7 +50,7 @@
     <!-- INTRO -->
     <section class="slide intro">
 
-      <!-- LEFT CONTENT -->
+      <!-- CENTRAL CONTENT -->
       <div class="slide-content">
 
         <h1>Heer Shah</h1>
@@ -70,20 +69,13 @@
             📁 <span>Projects</span>
           </button>
           <button class="qa-btn" data-go="skills" aria-label="Go to Skills">
-            🧠 <span>Skills</span>
+            🧠 <span>Skills & Tools</span>
           </button>
           <button class="qa-btn" data-go="contact" aria-label="Go to Contact">
             📄 <span>Contact</span>
           </button>
         </div>
 
-      </div>
-
-      <!-- 🔒 LOCK TO UNLOCK (RIGHT SIDE) -->
-      <div class="unlock-area slide1-only" id="unlockArea">
-        <div class="lock" id="lockIcon">🔒</div>
-        <div class="key" id="keyIcon">🗝️</div>
-        <p class="unlock-text">Unlock to continue</p>
       </div>
 
     </section>
@@ -176,100 +168,72 @@
         </div>
       </div>
 
-
     </section>
 
-    <!-- TOOLS -->
-    <section class="slide tools">
-      <div class="slide-content">
-        <h2>Tools & Technologies</h2>
-        <div class="tools-grid">
-          <span>GitHub</span><span>Linux</span><span>Bash</span>
-          <span>Figma</span><span>Canva</span><span>Prezi</span>
-          <span>XAMPP</span><span>Cisco Packet Tracer</span>
-          <span>AutoCAD</span><span>Adobe XD</span><span>Postman</span>
-          <span>AI Systems</span>
-        </div>
-      </div>
-
-      <div class="orbital-stack">
-
-        <div class="core">
-          <span>SYSTEM<br>CORE</span>
-        </div>
-
-        <!-- Tech Stack Cards with new non-conflicting class names -->
-        <div class="tech-card tech-card-ui">
-          <div class="tech-card-title">UI / Design</div>
-          <div class="tech-card-items">Figma · Canva · Adobe XD</div>
-        </div>
-
-        <div class="tech-card tech-card-backend">
-          <div class="tech-card-title">Backend & APIs</div>
-          <div class="tech-card-items">PHP · Node.js · XAMPP · Postman</div>
-        </div>
-
-        <div class="tech-card tech-card-infra">
-          <div class="tech-card-title">Infra & Tools</div>
-          <div class="tech-card-items">Linux · Bash · Git · MySQL</div>
-        </div>
-
-      </div>
-
-
-    </section>
-
-
-    <!-- SKILLS -->
+    <!-- SKILLS & TOOLS (MERGED) -->
     <section class="slide skills">
-      <div class="slide-content">
-        <h2>Skills</h2>
-
-        <div class="skills-jar-layout">
-
-          <!-- Main content: jar + skills -->
-          <div class="skills-main">
-
-            <!-- LEFT: Glass Jar -->
-            <div class="jar-container" id="jarTrigger">
-              <div class="jar-lid" id="jarLid">Open Skills Jar</div>
-              <div class="jar-glass">
-                <span class="jar-text">Click to open</span>
-              </div>
+      <div class="slide-content skills-layout-merged">
+        <h2>Skills & Technologies</h2>
+        <p class="skills-subtitle">A comprehensive overview of my technical stack, engineering tools, and systems experience.</p>
+        
+        <div class="skills-grid-merged">
+          <!-- Frontend & UI -->
+          <div class="skill-category-box">
+            <div class="box-header">
+              <span class="box-icon">💻</span>
+              <h3>Frontend & UI</h3>
             </div>
+            <div class="skills-list">
+              <span class="skill-tag">HTML5 / CSS3</span>
+              <span class="skill-tag">JavaScript (ES6+)</span>
+              <span class="skill-tag font-tailwind">Tailwind CSS</span>
+              <span class="skill-tag">AngularJS</span>
+            </div>
+          </div>
 
-            <!-- RIGHT: Skills (hidden initially) -->
-            <div class="skills-groups" id="skillsGroups">
+          <!-- Backend & Database -->
+          <div class="skill-category-box">
+            <div class="box-header">
+              <span class="box-icon">⚙️</span>
+              <h3>Backend & Data</h3>
+            </div>
+            <div class="skills-list">
+              <span class="skill-tag">PHP</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Python</span>
+            </div>
+          </div>
 
-              <div class="skill-group">
-                <h4>Web Development</h4>
-                <div class="skill-row">
-                  <span class="skill">HTML</span>
-                  <span class="skill">Tailwind CSS</span>
-                  <span class="skill">JavaScript</span>
-                  <span class="skill">AngularJS</span>
-                </div>
-              </div>
+          <!-- Systems & Networking -->
+          <div class="skill-category-box">
+            <div class="box-header">
+              <span class="box-icon">🛡️</span>
+              <h3>Systems & Networks</h3>
+            </div>
+            <div class="skills-list">
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Bash Scripting</span>
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">Cisco Packet Tracer</span>
+            </div>
+          </div>
 
-              <div class="skill-group">
-                <h4>Backend & Data</h4>
-                <div class="skill-row">
-                  <span class="skill">PHP</span>
-                  <span class="skill">Node JS</span>
-                  <span class="skill">MySQL</span>
-                  <span class="skill">Python</span>
-                </div>
-              </div>
-
-              <div class="skill-group">
-                <h4>Systems & Low-level</h4>
-                <div class="skill-row">
-                  <span class="skill">Bash Scripting</span>
-                  <span class="skill">C</span>
-                  <span class="skill">C++</span>
-                </div>
-              </div>
-
+          <!-- Tools & Software -->
+          <div class="skill-category-box">
+            <div class="box-header">
+              <span class="box-icon">🛠️</span>
+              <h3>Tools & Software</h3>
+            </div>
+            <div class="skills-list">
+              <span class="skill-tag">Git & GitHub</span>
+              <span class="skill-tag">Postman</span>
+              <span class="skill-tag">XAMPP</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Adobe XD</span>
+              <span class="skill-tag">AutoCAD</span>
             </div>
           </div>
         </div>
