@@ -2303,25 +2303,25 @@ body.light {
 .experience-header h3 {
   font-size: 1.6rem;
   font-weight: 800;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .duration {
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 /* Company */
 .company {
   margin-top: 10px;
   font-weight: 700;
-  color: #38bdf8;
+  color: var(--accent);
 }
 
 .company span {
   display: block;
   font-size: 0.85rem;
-  color: #9ca3af;
+  color: var(--muted);
   font-weight: 500;
 }
 
@@ -2336,7 +2336,7 @@ body.light {
   margin-bottom: 14px;
   font-size: 1.05rem;
   line-height: 1.6;
-  color: #e5e7eb;
+  color: var(--text);
 }
 
 .experience-points li::before {
