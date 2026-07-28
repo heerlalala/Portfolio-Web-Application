@@ -32,12 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     currentSlide = index;
 
-    gsap.to(slider, {
-      x: `-${currentSlide * 100}vw`,
-      duration: 0.5,
-      ease: "power2.out",
-      overwrite: "auto"
-    });
+    if (window.innerWidth <= 900) {
+      // Mobile vertical scroll
+      const targetSlide = document.querySelectorAll(".slide")[index];
+      if (targetSlide) {
+        const yOffset = -70; // offset to account for floating nav bar
+        const y = targetSlide.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    } else {
+      // Desktop horizontal slide
+      gsap.to(slider, {
+        x: `-${currentSlide * 100}vw`,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    }
 
     updateSlide1Widgets();
 
@@ -119,18 +130,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.closest("#birdGame") || e.target.closest(".game-controls") || e.target.closest(".game-panel")) {
       return;
     }
-    const touchEndX = e.changedTouches[0].screenX;
-    const touchEndY = e.changedTouches[0].screenY;
-    
-    const dx = touchEndX - touchStartX;
-    const dy = touchEndY - touchStartY;
-    
-    // Predominantly horizontal swipe checks
-    if (Math.abs(dx) > 2.5 * Math.abs(dy) && Math.abs(dx) > 80) {
-      if (dx < 0) {
-        goToSlide(currentSlide + 1);
-      } else {
-        goToSlide(currentSlide - 1);
+    // Only perform horizontal swipe gestures on desktop viewports
+    if (window.innerWidth > 900) {
+      const touchEndX = e.changedTouches[0].screenX;
+      const touchEndY = e.changedTouches[0].screenY;
+      
+      const dx = touchEndX - touchStartX;
+      const dy = touchEndY - touchStartY;
+      
+      // Predominantly horizontal swipe checks
+      if (Math.abs(dx) > 2.5 * Math.abs(dy) && Math.abs(dx) > 80) {
+        if (dx < 0) {
+          goToSlide(currentSlide + 1);
+        } else {
+          goToSlide(currentSlide - 1);
+        }
       }
     }
   }, { passive: true });
@@ -859,5 +873,33 @@ Router# write memory`
     // Auto scroll to bottom
     consoleLogs.scrollTop = consoleLogs.scrollHeight;
   }
+
+  // Mobile active navigation section highlight based on scroll position
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth <= 900) {
+      const slides = document.querySelectorAll(".slide");
+      let activeIndex = 0;
+      let minDistance = Infinity;
+
+      slides.forEach((slide, idx) => {
+        const rect = slide.getBoundingClientRect();
+        // Distance from top of viewport to slide top, offset by navbar height
+        const distance = Math.abs(rect.top - 70); 
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeIndex = idx;
+        }
+      });
+
+      if (activeIndex !== currentSlide) {
+        currentSlide = activeIndex;
+        updateSlide1Widgets();
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach((item, i) => {
+          item.classList.toggle("active", i === currentSlide);
+        });
+      }
+    }
+  });
 
 }); // END DOMContentLoaded

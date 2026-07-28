@@ -2882,9 +2882,19 @@ body.light {
    ========================================== */
 
 @media (max-width: 900px) {
-  /* Prevent scrolling horizontally on body */
-  body {
-    overflow-x: hidden;
+  /* Force vertical scroll on body and document for stack mode on mobile */
+  html, body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100%;
+  }
+
+  .slider-container {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important; /* Disable horizontal shifts on mobile */
   }
 
   /* Mobile Navigation Menu Override */
@@ -2932,19 +2942,18 @@ body.light {
 
   /* Slide Base Override */
   .slide {
-    padding: 125px 20px 40px; /* Safe padding-top for mobile floating nav */
-    height: 100vh;
-    height: 100dvh;
+    padding: 110px 20px 60px; /* Safe padding-top for mobile floating nav */
+    height: auto !important; /* Allow slides to grow to their natural height on mobile */
+    min-height: 100vh; /* Keep slide at least full viewport height */
+    min-height: 100dvh;
     width: 100vw;
-    flex-shrink: 0; /* CRITICAL: Force slides to remain 100vw and not shrink */
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Start content from top for natural vertical scrolling */
+    justify-content: flex-start;
     align-items: stretch;
-    overflow-y: auto !important; /* Enable vertical scrollable area */
-    overflow-x: hidden !important;
-    -webkit-overflow-scrolling: touch; /* Smooth iOS inertia scroll */
-    touch-action: pan-y !important; /* Forces mobile browsers to enable native vertical scroll touch gestures */
+    overflow: visible !important; /* Let document scroll natively */
+    touch-action: auto !important; /* Allow all mobile gestures natively */
   }
 
   .slide-content {
@@ -2978,7 +2987,7 @@ body.light {
   /* Slide 1: Intro & Unlock */
   .intro {
     justify-content: center; /* Center intro vertically since it is short */
-    padding-top: 125px;
+    padding-top: 110px;
     padding-bottom: 20px;
   }
   .intro .slide-content {
@@ -3048,9 +3057,9 @@ body.light {
   .slide.about {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 125px;
+    padding-top: 110px;
     padding-bottom: 20px;
-    overflow-y: auto;
+    overflow: visible !important;
   }
   .about .slide-content {
     margin-bottom: 16px;
@@ -3084,9 +3093,9 @@ body.light {
   .slide.tools {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 125px;
+    padding-top: 110px;
     padding-bottom: 20px;
-    overflow-y: auto;
+    overflow: visible !important;
   }
   .tools-grid {
     justify-content: center;
@@ -3134,9 +3143,9 @@ body.light {
   .slide.skills {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 125px;
+    padding-top: 110px;
     padding-bottom: 20px;
-    overflow-y: auto;
+    overflow: visible !important;
   }
   .skills-main {
     grid-template-columns: 1fr !important;
@@ -3195,9 +3204,9 @@ body.light {
   .slide.projects {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 125px;
+    padding-top: 110px;
     padding-bottom: 20px;
-    overflow-y: auto;
+    overflow: visible !important;
   }
   .projects-layout {
     grid-template-columns: 1fr;
@@ -3241,9 +3250,9 @@ body.light {
   .slide.experience {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 125px;
+    padding-top: 110px;
     padding-bottom: 20px;
-    overflow-y: auto;
+    overflow: visible !important;
   }
   .experience-card {
     padding: 20px;
@@ -3272,9 +3281,9 @@ body.light {
   .slide.contact {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 125px;
+    padding-top: 110px;
     padding-bottom: 20px;
-    overflow-y: auto;
+    overflow: visible !important;
   }
   .contact-row {
     flex-direction: column;
