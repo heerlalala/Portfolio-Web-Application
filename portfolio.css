@@ -241,11 +241,12 @@ body.light {
 .slide.experience,
 .slide.contact {
   align-items: flex-start; /* Start content below navbar; prevents vertical centering overlap bugs */
+  padding-top: 135px; /* Increased padding-top for a very clean, spacious look */
 }
 
 .slide.skills {
   align-items: stretch; /* Stretch content vertically for full-height background containers */
-  padding-top: 115px;
+  padding-top: 135px;
   padding-bottom: 60px;
 }
 
@@ -2084,13 +2085,13 @@ body.light {
 .projects-menu {
   background: #0f172a;
   border-radius: 20px;
-  padding: 24px;
+  padding: 20px; /* Reduced from 24px */
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .projects-menu h2 {
-  font-size: 2.4rem;
-  margin-bottom: 20px;
+  font-size: 2rem; /* Reduced from 2.4rem */
+  margin-bottom: 16px; /* Reduced from 20px */
 }
 
 /* Project buttons */
@@ -2133,14 +2134,14 @@ body.light {
 .project-details {
   background: linear-gradient(145deg, #020617, #0f172a);
   border-radius: 24px;
-  padding: 36px;
+  padding: 24px 30px; /* Reduced from 36px */
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
 }
 
 /* Text inside details */
 .project-details h3 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
+  font-size: 1.85rem; /* Reduced from 2.2rem */
+  margin-bottom: 8px; /* Reduced from 10px */
 }
 
 .project-details .tech {
@@ -2237,12 +2238,12 @@ body.light {
    CENTERED + BROADER PANELS
 ========================= */
 .projects-layout {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 56px;
+  grid-template-columns: 310px 1fr;
+  gap: 36px;
 }
 
 .projects-menu h2 {
