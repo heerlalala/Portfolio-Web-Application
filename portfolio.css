@@ -3514,6 +3514,12 @@ body.light {
   overflow: hidden; /* Prevent scrollbars on desktop */
 }
 
+.skills-layout-merged h2 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
 .skills-subtitle {
   color: var(--text-secondary);
   font-size: 0.95rem;
@@ -3525,10 +3531,10 @@ body.light {
 
 .skills-grid-merged {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 4 columns for a clean horizontal row on desktop */
   gap: 16px; /* Reduced gap */
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px; /* Broader limit to fit 4 columns beautifully */
   margin: 0 auto;
 }
 
