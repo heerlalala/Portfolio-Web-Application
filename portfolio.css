@@ -230,15 +230,22 @@ body.light {
   height: 100vh;
   height: 100dvh;
   flex-shrink: 0;
-  padding: 100px 80px 60px; /* Safe padding-top for fixed navigation */
+  padding: 115px 80px 60px; /* Safe padding-top to prevent navbar overlap */
   display: flex;
   align-items: center;
   position: relative;
 }
 
+.slide.skills,
+.slide.projects,
+.slide.experience,
+.slide.contact {
+  align-items: flex-start; /* Start content below navbar; prevents vertical centering overlap bugs */
+}
+
 .slide.skills {
-  align-items: stretch;
-  padding-top: 100px;
+  align-items: stretch; /* Stretch content vertically for full-height background containers */
+  padding-top: 115px;
   padding-bottom: 60px;
 }
 
