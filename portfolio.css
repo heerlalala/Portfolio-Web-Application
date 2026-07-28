@@ -3054,18 +3054,18 @@ body.light {
     margin-bottom: 16px;
   }
   .about-highlight {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 12px;
+    font-size: 0.9rem; /* Reduced from 1rem */
+    line-height: 1.4;
+    margin-bottom: 8px; /* Reduced from 12px */
     text-align: center;
   }
   .about ul {
-    margin-top: 12px;
+    margin-top: 8px;
   }
   .about li {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    margin-bottom: 4px; /* Reduced from 8px */
   }
   .tech-dashboard {
     position: relative;
@@ -3074,8 +3074,8 @@ body.light {
     transform: none;
     width: 100%;
     max-width: 480px;
-    height: 380px;
-    margin: 20px auto 0;
+    height: 280px; /* Reduced from 380px to prevent overflow */
+    margin: 16px auto 0;
   }
 
   /* Slide 3: Tools & Tech */
@@ -3276,47 +3276,61 @@ body.light {
   }
   .contact-row {
     flex-direction: column;
-    gap: 24px;
-    padding: 0;
+    align-items: center; /* Center horizontally on mobile */
+    gap: 16px;
+    padding: 0 10px;
   }
   .flashcard-panel,
   .game-column {
     width: 100%;
-    max-width: 420px;
+    max-width: 360px; /* Reduced from 420px to fit on small screens */
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .game-panel {
-    height: 340px !important; /* Reduce card height on mobile */
+    height: 290px !important; /* Reduced card height on mobile */
     padding: 12px 16px !important;
+    width: 100% !important;
   }
   #birdGame {
-    height: 260px !important; /* Scale down the canvas */
+    height: 210px !important; /* Scale down the canvas further */
     width: auto !important;
     aspect-ratio: 4 / 5 !important;
   }
   .game-instructions {
-    margin-top: 6px !important;
-    font-size: 0.8rem !important;
+    margin-top: 4px !important;
+    font-size: 0.75rem !important;
+  }
+  .game-controls {
+    margin-top: 10px;
+    gap: 12px;
+    display: flex;
+    justify-content: center;
   }
   .flashcard-container {
     width: 100%;
-    max-width: 420px;
-    height: 240px;
+    max-width: 360px;
+    height: 180px; /* Reduced from 240px */
   }
   .flashcard {
-    padding: 24px;
+    padding: 20px; /* Reduced from 24px */
     border-radius: 16px;
   }
   .flashcard h3 {
-    font-size: 1.6rem;
+    font-size: 1.4rem; /* Reduced from 1.6rem */
+    margin-bottom: 8px;
   }
   .flashcard p,
   .flashcard a {
-    font-size: 1rem;
+    font-size: 0.95rem; /* Reduced from 1rem */
   }
   .flashcard-controls {
     width: 100%;
-    max-width: 420px;
+    max-width: 360px;
+    display: flex;
+    justify-content: center; /* Center the next button */
   }
 }
 
@@ -3334,14 +3348,14 @@ body.light {
     font-size: 0.7rem;
   }
   .timeline-node {
-    padding: 8px 10px;
-    font-size: 0.8rem;
+    padding: 5px 8px; /* Reduced padding */
+    font-size: 0.75rem; /* Reduced font size */
     gap: 8px;
   }
   .timeline-detail-box {
     font-size: 0.75rem;
-    min-height: 56px;
-    padding: 8px 10px;
+    min-height: 48px; /* Reduced height */
+    padding: 6px 8px; /* Reduced padding */
   }
 }
 
