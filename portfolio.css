@@ -249,6 +249,15 @@ body.light {
   z-index: 2;
 }
 
+/* Wide layout overrides for slides with broad grids/split content */
+.slide.skills .slide-content,
+.slide.projects .slide-content,
+.slide.experience .slide-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 /* =========================
    INTRO SLIDE (ENHANCED)
 ========================= */
