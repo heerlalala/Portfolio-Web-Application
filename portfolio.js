@@ -879,14 +879,12 @@ Router# write memory`
     if (window.innerWidth <= 900) {
       const slides = document.querySelectorAll(".slide");
       let activeIndex = 0;
-      let minDistance = Infinity;
+      const middleOfScreen = window.innerHeight / 2;
 
       slides.forEach((slide, idx) => {
         const rect = slide.getBoundingClientRect();
-        // Distance from top of viewport to slide top, offset by navbar height
-        const distance = Math.abs(rect.top - 70); 
-        if (distance < minDistance) {
-          minDistance = distance;
+        // If the slide occupies the middle vertical line of the viewport
+        if (rect.top <= middleOfScreen && rect.bottom >= middleOfScreen) {
           activeIndex = idx;
         }
       });
@@ -900,6 +898,22 @@ Router# write memory`
         });
       }
     }
+  });
+
+  // Handle mobile-desktop layout switching seamlessly on window resize
+  let lastWidth = window.innerWidth;
+  window.addEventListener("resize", () => {
+    const currentWidth = window.innerWidth;
+    if (lastWidth <= 900 && currentWidth > 900) {
+      // Switched to desktop: Reset vertical scrolling and apply GSAP translation
+      window.scrollTo(0, 0);
+      goToSlide(currentSlide);
+    } else if (lastWidth > 900 && currentWidth <= 900) {
+      // Switched to mobile: Clear GSAP translation styles and scroll to current section
+      gsap.set(slider, { clearProps: "transform" });
+      goToSlide(currentSlide);
+    }
+    lastWidth = currentWidth;
   });
 
 }); // END DOMContentLoaded
