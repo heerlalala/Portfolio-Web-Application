@@ -33,12 +33,17 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
   background: var(--bg-gradient);
   color: var(--text);
   overflow: hidden;
+  width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
   min-height: 100dvh;
 }
@@ -214,8 +219,8 @@ body.light {
   display: flex;
   height: 100vh;
   height: 100dvh;
-  width: 700vw;
-  /* 7 slides */
+  width: 600vw;
+  /* 6 slides */
   position: relative;
   z-index: 1;
 }
@@ -2887,12 +2892,56 @@ body.light {
     overflow-x: hidden;
   }
 
+  /* Mobile Navigation Menu Override */
+  .menu-toggle-btn {
+    display: flex;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 75px;
+    right: 20px;
+    width: 200px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 16px;
+    gap: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: center;
+    padding: 10px 16px;
+  }
+
+  /* Hamburger Menu Active State Animation */
+  .menu-toggle-btn.active .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-toggle-btn.active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle-btn.active .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
   /* Slide Base Override */
   .slide {
     padding: 95px 20px 40px; /* Safe padding for floating nav */
     height: 100vh;
     height: 100dvh;
     width: 100vw;
+    flex-shrink: 0; /* CRITICAL: Force slides to remain 100vw and not shrink */
     display: flex;
     flex-direction: column;
     justify-content: center;
