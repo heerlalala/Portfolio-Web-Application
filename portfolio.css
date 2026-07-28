@@ -242,6 +242,13 @@ body.light {
   padding-bottom: 60px;
 }
 
+.slide.projects,
+.slide.experience,
+.slide.contact {
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
 /* Inner content wrapper */
 .slide-content {
   max-width: 600px;
@@ -3506,7 +3513,7 @@ body.light {
 .skills-layout-merged {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Prevent top content overflow/overlap under navigation bar */
   align-items: center;
   padding: 40px 60px;
   width: 100%;
