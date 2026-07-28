@@ -2932,15 +2932,17 @@ body.light {
 
   /* Slide Base Override */
   .slide {
-    padding: 95px 20px 40px; /* Safe padding for floating nav */
+    padding: 125px 20px 40px; /* Safe padding-top for mobile floating nav */
     height: 100vh;
     height: 100dvh;
     width: 100vw;
     flex-shrink: 0; /* CRITICAL: Force slides to remain 100vw and not shrink */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Start content from top for natural vertical scrolling */
     align-items: stretch;
+    overflow-y: auto; /* Enable vertical scrollable area */
+    -webkit-overflow-scrolling: touch; /* Smooth iOS inertia scroll */
   }
 
   .slide-content {
@@ -2973,8 +2975,8 @@ body.light {
 
   /* Slide 1: Intro & Unlock */
   .intro {
-    justify-content: flex-start;
-    padding-top: 95px;
+    justify-content: center; /* Center intro vertically since it is short */
+    padding-top: 125px;
     padding-bottom: 20px;
   }
   .intro .slide-content {
@@ -3044,7 +3046,7 @@ body.light {
   .slide.about {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 95px;
+    padding-top: 125px;
     padding-bottom: 20px;
     overflow-y: auto;
   }
@@ -3080,7 +3082,7 @@ body.light {
   .slide.tools {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 95px;
+    padding-top: 125px;
     padding-bottom: 20px;
     overflow-y: auto;
   }
@@ -3130,7 +3132,7 @@ body.light {
   .slide.skills {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 95px;
+    padding-top: 125px;
     padding-bottom: 20px;
     overflow-y: auto;
   }
@@ -3191,7 +3193,7 @@ body.light {
   .slide.projects {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 95px;
+    padding-top: 125px;
     padding-bottom: 20px;
     overflow-y: auto;
   }
@@ -3237,7 +3239,7 @@ body.light {
   .slide.experience {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 95px;
+    padding-top: 125px;
     padding-bottom: 20px;
     overflow-y: auto;
   }
@@ -3268,7 +3270,7 @@ body.light {
   .slide.contact {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 95px;
+    padding-top: 125px;
     padding-bottom: 20px;
     overflow-y: auto;
   }
@@ -3282,6 +3284,19 @@ body.light {
     width: 100%;
     max-width: 420px;
     margin: 0 auto;
+  }
+  .game-panel {
+    height: 340px !important; /* Reduce card height on mobile */
+    padding: 12px 16px !important;
+  }
+  #birdGame {
+    height: 260px !important; /* Scale down the canvas */
+    width: auto !important;
+    aspect-ratio: 4 / 5 !important;
+  }
+  .game-instructions {
+    margin-top: 6px !important;
+    font-size: 0.8rem !important;
   }
   .flashcard-container {
     width: 100%;
