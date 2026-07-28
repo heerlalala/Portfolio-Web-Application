@@ -2941,8 +2941,10 @@ body.light {
     flex-direction: column;
     justify-content: flex-start; /* Start content from top for natural vertical scrolling */
     align-items: stretch;
-    overflow-y: auto; /* Enable vertical scrollable area */
+    overflow-y: auto !important; /* Enable vertical scrollable area */
+    overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch; /* Smooth iOS inertia scroll */
+    touch-action: pan-y !important; /* Forces mobile browsers to enable native vertical scroll touch gestures */
   }
 
   .slide-content {
