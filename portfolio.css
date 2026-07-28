@@ -230,7 +230,7 @@ body.light {
   height: 100vh;
   height: 100dvh;
   flex-shrink: 0;
-  padding: 130px 80px 80px; /* Safe padding-top for fixed navigation */
+  padding: 100px 80px 60px; /* Safe padding-top for fixed navigation */
   display: flex;
   align-items: center;
   position: relative;
@@ -238,15 +238,8 @@ body.light {
 
 .slide.skills {
   align-items: stretch;
-  padding-top: 130px;
+  padding-top: 100px;
   padding-bottom: 60px;
-}
-
-.slide.projects,
-.slide.experience,
-.slide.contact {
-  align-items: flex-start;
-  overflow-y: auto;
 }
 
 /* Inner content wrapper */
@@ -3513,19 +3506,19 @@ body.light {
 .skills-layout-merged {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Prevent top content overflow/overlap under navigation bar */
+  justify-content: center; /* Center content vertically on desktop when it fits */
   align-items: center;
-  padding: 40px 60px;
+  padding: 10px 40px 20px; /* Reduced vertical padding to save height */
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden; /* Prevent scrollbars on desktop */
 }
 
 .skills-subtitle {
   color: var(--text-secondary);
   font-size: 0.95rem;
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 15px; /* Reduced margin */
   text-align: center;
   max-width: 600px;
 }
@@ -3533,7 +3526,7 @@ body.light {
 .skills-grid-merged {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 16px; /* Reduced gap */
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
@@ -3543,7 +3536,7 @@ body.light {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
-  padding: 24px;
+  padding: 16px 20px; /* Reduced padding to fit short screens */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3561,9 +3554,9 @@ body.light {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 12px; /* Reduced margin */
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 12px;
+  padding-bottom: 8px; /* Reduced padding */
 }
 
 .box-icon {
@@ -3617,6 +3610,7 @@ body.light {
   .skills-layout-merged {
     padding: 10px 15px;
     justify-content: flex-start; /* Prevent vertical centering from pushing top content offscreen */
+    overflow-y: auto; /* Enable vertical scroll on mobile */
   }
   .skills-subtitle {
     margin-bottom: 20px;
