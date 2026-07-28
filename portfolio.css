@@ -2361,9 +2361,9 @@ body.light {
   width: 100%;
   max-width: none;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Align content below navbar */
   justify-content: center;
-  min-height: 100vh;
+  min-height: auto;
 }
 
 /* =========================
@@ -2371,11 +2371,11 @@ body.light {
 ========================= */
 .contact-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Align columns at the top for a clean, uniform look */
   justify-content: center;
 
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
   padding: 0 80px;
   gap: 80px;
 }
