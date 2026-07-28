@@ -2890,7 +2890,7 @@ body.light {
     min-height: 100%;
   }
 
-  .slider-container {
+  .slider {
     display: block !important;
     width: 100% !important;
     height: auto !important;
