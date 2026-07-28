@@ -3524,7 +3524,7 @@ body.light {
 }
 
 .skills-layout-merged h2 {
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   margin-bottom: 10px;
   white-space: nowrap;
 }
@@ -3533,17 +3533,17 @@ body.light {
   color: var(--text-secondary);
   font-size: 0.95rem;
   margin-top: 10px;
-  margin-bottom: 15px; /* Reduced margin */
+  margin-bottom: 20px;
   text-align: center;
   max-width: 600px;
 }
 
 .skills-grid-merged {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns for a clean horizontal row on desktop */
-  gap: 16px; /* Reduced gap */
+  grid-template-columns: repeat(2, 1fr); /* Back to 2x2 grid layout as requested */
+  gap: 20px;
   width: 100%;
-  max-width: 1200px; /* Broader limit to fit 4 columns beautifully */
+  max-width: 1000px;
   margin: 0 auto;
 }
 
